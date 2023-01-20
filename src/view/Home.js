@@ -93,6 +93,9 @@ const Home = () => {
   };
 
   useEffect(() => {
+    if (auth.user) {
+      cookies.remove("lastPath", { path: "/" });
+    }
     fetchDataMenu();
     counterItem();
   }, []);

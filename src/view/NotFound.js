@@ -1,13 +1,22 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import Nama from "../storage/nama";
 import logoAyam from "../storage/logoAyam.png";
-
+import { useAuth } from "../service/auth";
+import Cookies from "universal-cookie";
 
 const NotFound = () => {
-  const navigate = useNavigate();
+  const auth = useAuth();
   const nama = Nama();
+  const navigate = useNavigate();
 
+  const cookies = new Cookies();
+
+  useEffect(() => {
+    if (auth.user) {
+      cookies.remove("lastPath", { path: "/" });
+    }
+  }, []);
   return (
     <div>
       <style
@@ -336,4 +345,4 @@ const NotFound = () => {
     </div>
   );
 };
-export default NotFound
+export default NotFound;

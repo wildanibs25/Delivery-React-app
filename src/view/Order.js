@@ -20,7 +20,6 @@ const Order = () => {
 
   const location = useLocation();
 
-
   const onDetail = (record) => {
     setShowForm(true);
     record.deliveryCost = 5000;
@@ -121,6 +120,12 @@ const Order = () => {
   };
 
   useEffect(() => {
+    if (auth.user) {
+      cookies.set("lastPath", location.pathname, {
+        path: "/",
+      });
+    }
+
     fetchDataOrder();
   }, [detail.status_pesanan]);
 

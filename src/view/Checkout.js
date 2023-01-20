@@ -109,6 +109,12 @@ const Checkout = () => {
   };
 
   useEffect(() => {
+    if (auth.user) {
+      cookies.set("lastPath", location.pathname, {
+        path: "/",
+      });
+    }
+    
     fetchDataAddress();
     setTotalPrice(location.state?.totalPrice);
     window.scrollTo({

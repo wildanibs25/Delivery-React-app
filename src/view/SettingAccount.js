@@ -9,6 +9,7 @@ import {
   TextInput,
 } from "flowbite-react";
 import React, { Fragment, useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
 import Cookies from "universal-cookie";
 import {
   AddressCom,
@@ -39,6 +40,7 @@ const SettingAccount = () => {
   const [validation, setValidation] = useState([]);
 
   const cookies = new Cookies();
+  const location = useLocation();
 
   const fetchDataUser = () => {
     setImage(auth.user.foto);
@@ -112,6 +114,11 @@ const SettingAccount = () => {
   };
 
   useEffect(() => {
+    if (auth.user) {
+      cookies.set("lastPath", location.pathname, {
+        path: "/",
+      });
+    }
     fetchDataUser();
   }, []);
 

@@ -1,6 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { Avatar, Badge } from "flowbite-react";
 import React, { Fragment, useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
 import Swal from "sweetalert2";
 import Cookies from "universal-cookie";
 import { DetailAccount, SegmentErrorCom } from "../component/App";
@@ -15,6 +16,8 @@ const Accounts = () => {
   const [detail, setDetail] = useState([]);
 
   const cookies = new Cookies();
+
+  const location = useLocation();
 
   const onImage = (record, column) => {
     return (
@@ -147,6 +150,11 @@ const Accounts = () => {
       });
   };
   useEffect(() => {
+     if (auth.user) {
+       cookies.set("lastPath", location.pathname, {
+         path: "/",
+       });
+     }
     fetchDataAccounts();
   }, [detail]);
 

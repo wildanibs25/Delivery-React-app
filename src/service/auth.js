@@ -28,6 +28,7 @@ const AuthProvider = ({ children }) => {
 
   const logout = () => {
     cookies.remove("ACCESS_TOKEN", { path: "/" });
+    cookies.remove("lastPath", { path: "/" });
     setUser(null);
   };
 

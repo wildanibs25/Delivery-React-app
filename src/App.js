@@ -68,7 +68,7 @@ function App() {
           }
         />
 
-        <Route path="Invoice=:id" element={<User />}>
+        <Route path="Invoice/:id" element={<User />}>
           <Route index element={<Invoice />} />
         </Route>
 

@@ -14,13 +14,17 @@ import {
   TimerAlert,
   ToggleSwitchCom,
 } from "../component/App";
+import { useLocation } from "react-router-dom";
 
 const Menu = () => {
   const auth = useAuth();
   const [records, setRecords] = useState([]);
   const [showForm, setShowForm] = useState(false);
   const [isLoading, setIsLoading] = useState(0);
+
   const cookies = new Cookies();
+
+  const location = useLocation();
 
   const onAction = (record) => {
     return (
@@ -197,6 +201,11 @@ const Menu = () => {
   };
 
   useEffect(() => {
+    if (auth.user) {
+      cookies.set("lastPath", location.pathname, {
+        path: "/",
+      });
+    }
     fetchDataMenu();
   }, []);
 

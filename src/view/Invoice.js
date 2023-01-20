@@ -154,6 +154,9 @@ const Invoice = () => {
   };
 
   useEffect(() => {
+    if (auth.user) {
+      cookies.remove("lastPath", { path: "/" });
+    }
     fetchData();
     window
       .matchMedia("(min-width: 768px)")
