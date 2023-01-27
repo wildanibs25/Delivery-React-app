@@ -27,10 +27,10 @@ import Nama from "../storage/nama";
 const Checkout = () => {
   const auth = useAuth();
   const { nama, no_hp } = auth.user;
+  const [id, setId] = useState("");
   const [address, setAddress] = useState([]);
   const [selectPlace, setSelectPlace] = useState("");
   const [selectAddress, setSelectAddress] = useState("");
-  const [id, setId] = useState("");
   const [totalPrice, setTotalPrice] = useState(0);
   const [validation, setValidation] = useState([]);
   const [showForm, setSetShowForm] = useState(false);
@@ -39,7 +39,6 @@ const Checkout = () => {
   const cookies = new Cookies();
   const navigate = useNavigate();
   const location = useLocation();
-
 
   const fetchDataAddress = async () => {
     Axios.defaults.headers.common["Authorization"] = `Bearer ${cookies.get(
@@ -91,14 +90,17 @@ const Checkout = () => {
           buttonsStyling: false,
         });
         setTotalPrice(0);
-        navigate("/invoice=" + response.data.data.nota, { replace: true });
+        navigate("/invoice/" + response.data.data.nota, { replace: true });
       })
       .catch((error) => {
         if (error.response.status === 412) {
           SegmentErrorCom(error.response.data.message);
           auth.logout();
         } else {
-          const message = error.response.status === 421 ? error.response.data.error : "Order Unsuccessfully!" ;
+          const message =
+            error.response.status === 421
+              ? error.response.data.error
+              : "Order Unsuccessfully!";
           TimerAlert().Toast.fire({
             icon: "error",
             title: message,
@@ -114,7 +116,7 @@ const Checkout = () => {
         path: "/",
       });
     }
-    
+
     fetchDataAddress();
     setTotalPrice(location.state?.totalPrice);
     window.scrollTo({
@@ -124,7 +126,7 @@ const Checkout = () => {
 
   return (
     <Fragment>
-      <BreadcrumbCom name={"Checkout"}/>
+      <BreadcrumbCom name={"Checkout"} />
       <div className="p-6 bg-white border border-gray-200 rounded-lg dark:bg-gray-800 dark:border-gray-700">
         <NavLink
           to="/"
@@ -200,9 +202,7 @@ const Checkout = () => {
             <div>
               {showForm ? (
                 <div>
-                  <AddressCom
-                    fetchDataAddress={fetchDataAddress}
-                  />
+                  <AddressCom fetchDataAddress={fetchDataAddress} />
                 </div>
               ) : (
                 <div id="address">

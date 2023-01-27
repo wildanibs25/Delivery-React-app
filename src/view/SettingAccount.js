@@ -10,6 +10,7 @@ import {
 } from "flowbite-react";
 import React, { Fragment, useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
+import Swal from "sweetalert2";
 import Cookies from "universal-cookie";
 import {
   AddressCom,
@@ -111,6 +112,64 @@ const SettingAccount = () => {
   const imageChange = (file) => {
     setImage(URL.createObjectURL(file[0]));
     setSendImage(file[0]);
+  };
+
+  const onDelete = async () => {
+    Axios.defaults.headers.common["Authorization"] = `Bearer ${cookies.get(
+      "ACCESS_TOKEN"
+    )}`;
+
+    const swalButtons = Swal.mixin({
+      customClass: {
+        confirmButton:
+          "text-white bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2",
+        cancelButton:
+          "text-white bg-gradient-to-br from-pink-500 to-orange-400 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-pink-200 dark:focus:ring-pink-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2",
+      },
+      buttonsStyling: false,
+    });
+
+    swalButtons
+      .fire({
+        title: "Are you sure?",
+        text: "You won't be able to revert this!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonText: "Yes, delete it!",
+        cancelButtonText: "No, cancel!",
+        reverseButtons: true,
+      })
+      .then(async (result) => {
+        Axios.defaults.headers.common["Authorization"] = `Bearer ${cookies.get(
+          "ACCESS_TOKEN"
+        )}`;
+
+        if (result.isConfirmed) {
+          await Axios.post(`delete-user`)
+            .then(() => {
+              TimerAlert().Toast.fire({
+                icon: "success",
+                title: "Your Account has been deleted.",
+              });
+              auth.logout();
+            })
+            .catch((error) => {
+              if (error.response.status === 412) {
+                SegmentErrorCom(error.response.data.message);
+                auth.logout();
+              } else if (error.response.status === 400) {
+                SegmentErrorCom(error.response.data.message);
+              } else {
+                TimerAlert().Toast.fire({
+                  icon: "error",
+                  title: "Your Account has not been deleted.",
+                });
+              }
+            });
+        } else if (result.dismiss === Swal.DismissReason.cancel) {
+          swalButtons.fire("Cancelled", "Account is safe :)", "error");
+        }
+      });
   };
 
   useEffect(() => {
@@ -406,6 +465,14 @@ const SettingAccount = () => {
               type="submit"
             >
               Submit
+            </Button>
+            <Button
+              gradientDuoTone="pinkToOrange"
+              className="w-36 mr-4 float-right transition ease-in-out delay-150 bg-blue-500 hover:-translate-y-1 hover:scale-110 duration-300"
+              type="button"
+              onClick={onDelete}
+            >
+              Delete
             </Button>
           </div>
         </Card>

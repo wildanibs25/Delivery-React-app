@@ -112,7 +112,7 @@ const Order = () => {
             buttonsStyling: false,
           }).then((result) => {
             if (result.isConfirmed) {
-              fetchDataOrder();
+              window.location.reload();
             }
           });
         }

@@ -19,6 +19,7 @@ import control from "../storage/control.png";
 import { Avatar, Card } from "flowbite-react";
 import { useAuth } from "../service/auth";
 import Nama from "../storage/nama";
+import rew from "../storage/ss.png";
 
 const Admin = () => {
   const auth = useAuth();
@@ -30,10 +31,10 @@ const Admin = () => {
 
   const location = useLocation();
 
-  let activeClassName =
-    "flex rounded-l-lg p-2 cursor-pointer dark:text-white bg-sky-50 text-sky-500 dark:bg-sky-500 text-white text-base items-center gap-x-4 mt-2";
-  let noActiveClassName =
-    "flex rounded-l-lg p-2 cursor-pointer dark:text-white hover:bg-sky-50 hover:text-sky-500 dark:hover:bg-sky-500 text-white text-base items-center gap-x-4 mt-2";
+  const activeClassName =
+    "group flex rounded-l-full relative p-2 cursor-pointer dark:text-white bg-white text-sky-500 dark:bg-sky-500 text-white text-base items-center gap-x-4 mt-2";
+  const noActiveClassName =
+    "group flex rounded-l-full relative p-2 cursor-pointer dark:text-white hover:bg-white hover:text-sky-500 dark:hover:bg-sky-500 text-white text-base items-center gap-x-4 mt-2";
 
   useEffect(() => {
     if (isMobile.matches) {
@@ -93,6 +94,16 @@ const Admin = () => {
               <span className={`${!open && "hidden"} origin-left`}>
                 Dashboard
               </span>
+              <img
+                src={rew}
+                className={`${
+                  isActive === "dashboard"
+                    ? "opacity-100 duration-300"
+                    : "opacity-0 group-hover:opacity-100"
+                } absolute ${
+                  open ? "-right-[1.35rem]" : "-right-[2.35rem] -translate-x-1"
+                } -top-[1.22rem] inset-y-0 h-[5.05rem] w-16`}
+              />
             </NavLink>
           </li>
         </ul>
@@ -106,6 +117,16 @@ const Admin = () => {
             >
               <HiShoppingBag className="w-7 h-7 dark:text-white group-hover:text-sky-500 dark:group-hover:text-sky-500" />
               <span className={`${!open && "hidden"} origin-left`}>Menu</span>
+              <img
+                src={rew}
+                className={`${
+                  isActive === "menu"
+                    ? "opacity-100 duration-300"
+                    : "opacity-0 group-hover:opacity-100"
+                } absolute ${
+                  open ? "-right-[1.35rem]" : "-right-[2.35rem] -translate-x-1"
+                } -top-[1.22rem] inset-y-0 h-[5.05rem] w-16`}
+              />
             </NavLink>
           </li>
           <li>
@@ -117,6 +138,16 @@ const Admin = () => {
             >
               <HiClipboardList className="w-7 h-7 dark:text-white group-hover:text-sky-500 dark:group-hover:text-sky-500" />
               <span className={`${!open && "hidden"} origin-left`}>Order</span>
+              <img
+                src={rew}
+                className={`${
+                  isActive === "order"
+                    ? "opacity-100 duration-300"
+                    : "opacity-0 group-hover:opacity-100"
+                } absolute ${
+                  open ? "-right-[1.35rem]" : "-right-[2.35rem] -translate-x-1"
+                } -top-[1.22rem] inset-y-0 h-[5.05rem] w-16`}
+              />
             </NavLink>
           </li>
           <li>
@@ -130,6 +161,16 @@ const Admin = () => {
               <span className={`${!open && "hidden"} origin-left`}>
                 Accounts
               </span>
+              <img
+                src={rew}
+                className={`${
+                  isActive === "accounts"
+                    ? "opacity-100 duration-300"
+                    : "opacity-0 group-hover:opacity-100"
+                } absolute ${
+                  open ? "-right-[1.35rem]" : "-right-[2.35rem] -translate-x-1"
+                } -top-[1.22rem] inset-y-0 h-[5.05rem] w-16`}
+              />
             </NavLink>
           </li>
         </ul>
@@ -142,8 +183,8 @@ const Admin = () => {
                   setOpen(true);
                 }}
                 className={`${
-                  open ? "p-2 bg-sky-50" : ""
-                } flex rounded-l-lg cursor-pointer dark:text-sky-500 text-sky-500 text-base items-center gap-x-4 mt-2`}
+                  open ? "p-2 bg-white" : ""
+                } flex rounded-full cursor-pointer text-sky-500 hover:text-sky-500 text-base items-center gap-x-4 mt-2`}
               >
                 <Avatar
                   className="h-10 w-10 sm:h-10"
@@ -171,15 +212,14 @@ const Admin = () => {
                 <li>
                   <NavLink
                     to={"/settings"}
-                    state={{ path: "Dashboard" }}
-                    className={`flex hover:rounded-l-lg p-2 cursor-pointer dark:text-white hover:bg-sky-50 hover:text-sky-500 dark:hover:bg-sky-500 text-white text-base items-center gap-x-4 mt-2`}
+                    className={`flex hover:rounded-full p-2 cursor-pointer dark:text-white hover:bg-white hover:text-sky-500 dark:hover:bg-white text-white text-base items-center gap-x-4 mt-2`}
                   >
                     <BsFillGearFill />
                     Settings
                   </NavLink>
                 </li>
                 <li
-                  className={`flex hover:rounded-l-lg p-2 cursor-pointer dark:text-white hover:bg-sky-50 hover:text-sky-500 dark:hover:bg-sky-500 text-white text-base items-center gap-x-4`}
+                  className={`flex hover:rounded-full p-2 cursor-pointer dark:text-white hover:bg-white hover:text-sky-500 dark:hover:bg-white text-white text-base items-center gap-x-4`}
                   onClick={() => ConfirmLogout(auth)}
                 >
                   <FaPowerOff />
@@ -191,9 +231,11 @@ const Admin = () => {
             <li>
               <NavLink
                 to="/"
-                className={`flex rounded-l-lg p-2 cursor-pointer dark:text-white hover:bg-sky-50 hover:text-sky-500 dark:hover:bg-sky-500 text-white text-base items-center gap-x-4 mt-2`}
+                className={
+                  "group flex rounded-lg relative p-2 cursor-pointer dark:text-white hover:bg-white hover:text-sky-500 dark:hover:bg-sky-500 text-white text-base items-center gap-x-4 mt-5"
+                }
               >
-                <BsBoxArrowLeft className="w-6 h-6 dark:text-white group-hover:text-sky-500 dark:group-hover:text-sky-500" />
+                <BsBoxArrowLeft className="w-7 h-7 dark:text-white group-hover:text-sky-500 dark:group-hover:text-sky-500" />
                 <span className={`${!open && "hidden"} origin-left`}>
                   View Website
                 </span>

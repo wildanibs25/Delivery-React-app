@@ -23,8 +23,9 @@ import FormPasswordCom from "./FormPasswordCom";
 import AddressCom from "./AddressCom";
 import { useNavigate } from "react-router-dom";
 import FormDateCom from "./FormDateCom";
+import Swal from "sweetalert2";
 
-const DetailAccount = ({ detail, setDetail, showForm }) => {
+const DetailAccount = ({ detail, setDetail, showForm, setShowForm }) => {
   const auth = useAuth();
   const [id, setId] = useState("");
   const [image, setImage] = useState("");
@@ -140,6 +141,65 @@ const DetailAccount = ({ detail, setDetail, showForm }) => {
       });
   };
 
+  const deleteAccount = async () => {
+    Axios.defaults.headers.common["Authorization"] = `Bearer ${cookies.get(
+      "ACCESS_TOKEN"
+    )}`;
+
+    const swalButtons = Swal.mixin({
+      customClass: {
+        confirmButton:
+          "text-white bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2",
+        cancelButton:
+          "text-white bg-gradient-to-br from-pink-500 to-orange-400 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-pink-200 dark:focus:ring-pink-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2",
+      },
+      buttonsStyling: false,
+    });
+
+    swalButtons
+      .fire({
+        title: "Are you sure?",
+        text: "You won't be able to revert this!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonText: "Yes, delete it!",
+        cancelButtonText: "No, cancel!",
+        reverseButtons: true,
+      })
+      .then(async (result) => {
+        Axios.defaults.headers.common["Authorization"] = `Bearer ${cookies.get(
+          "ACCESS_TOKEN"
+        )}`;
+
+        if (result.isConfirmed) {
+          await Axios.post(`delete-user-admin/${id}`)
+            .then(() => {
+              TimerAlert().Toast.fire({
+                icon: "success",
+                title: "Account has been deleted.",
+              });
+              setShowForm(false);
+              setDetail([]);
+            })
+            .catch((error) => {
+              if (error.response.status === 412) {
+                SegmentErrorCom(error.response.data.message);
+                auth.logout();
+              } else if (error.response.status === 400) {
+                SegmentErrorCom(error.response.data.message);
+              } else {
+                TimerAlert().Toast.fire({
+                  icon: "error",
+                  title: "Account has not been deleted.",
+                });
+              }
+            });
+        } else if (result.dismiss === Swal.DismissReason.cancel) {
+          swalButtons.fire("Cancelled", "Account is safe :)", "error");
+        }
+      });
+  };
+
   useEffect(() => {
     if (!showForm) {
       setValidation([]);
@@ -159,7 +219,7 @@ const DetailAccount = ({ detail, setDetail, showForm }) => {
           </h1>
           <span className="ml-auto">
             <Tooltip content="Delete Account" style={"light"} placement="left">
-              <Button gradientDuoTone="pinkToOrange">
+              <Button onClick={deleteAccount} gradientDuoTone="pinkToOrange">
                 <FaTrashAlt />
               </Button>
             </Tooltip>

@@ -57,7 +57,7 @@ const NavbarCom = () => {
             <Link to={"#"}>
               <Dropdown.Item>History</Dropdown.Item>
             </Link>
-            <Link to={"/settings"} state={{ path: "Home" }}>
+            <Link to={"/settings"}>
               <Dropdown.Item>Settings</Dropdown.Item>
             </Link>
             <Dropdown.Divider />

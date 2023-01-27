@@ -124,6 +124,7 @@ const AddressCom = ({ stringURL, fetchDataAddress, action = true }) => {
               clearInterval(fadeEffect);
             }
           }, 100);
+          
           await Axios.post("delete-alamat/" + id)
             .then(() => {
               TimerAlert().Toast.fire({
@@ -162,7 +163,7 @@ const AddressCom = ({ stringURL, fetchDataAddress, action = true }) => {
           return (
             <div
               id={`address-${item.id_alamat}`}
-              className="flex w-full items-center mb-6 block p-6 bg-white border border-gray-200 rounded-lg shadow-md"
+              className="flex w-full items-center mb-6 p-6 bg-white border border-gray-200 rounded-lg shadow-md"
               key={item.id_alamat}
             >
               <div className="items-center w-full">

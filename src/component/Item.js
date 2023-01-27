@@ -30,7 +30,7 @@ const Item = (props) => {
             {nama_menu}
           </h1>
           <h1 className="text-gray-900 mb-1">{FormatRupiah(harga_menu)}</h1>
-          <p className="leading-relaxed mb-3">{deskripsi_menu}</p>
+          <p className="leading-relaxed text-sm mb-3">{deskripsi_menu}</p>
           <div className="flex items-center flex-nowrap ">
             {status_menu !== "Tersedia" ? (
               <Badge className="px-3" color="indigo" icon={HiClock}>

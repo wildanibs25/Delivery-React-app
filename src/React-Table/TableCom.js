@@ -18,9 +18,6 @@ const TableCom = ({ model, isLoading, totalTable, keyword }) => {
     sizePage: 0,
   });
 
-  // Server Side (Tidak digunakan)
-  // const [isLoading, setIsLoading] = useState(false);
-
   //Sort
   const onSort = (columns) => {
     if (!columns.sortable) return;

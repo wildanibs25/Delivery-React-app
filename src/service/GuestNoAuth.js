@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from "react";
-import { Navigate, useLocation } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 import Cookies from "universal-cookie";
 import { useAuth } from "./auth";
 
@@ -9,7 +9,6 @@ const GuestNoAuth = ({ children }) => {
   const [admin, setAdmin] = useState("/dashboard");
   const [user, setUser] = useState("/");
 
-  const location = useLocation();
   const cookies = new Cookies();
 
   useEffect(() => {
@@ -19,9 +18,9 @@ const GuestNoAuth = ({ children }) => {
 
   if (auth.user) {
     if (auth.user.is_admin) {
-      return <Navigate to={admin} state={{ path: location.pathname }} />;
+      return <Navigate to={admin} />;
     }
-    return <Navigate to={user} state={{ path: location.pathname }} />;
+    return <Navigate to={user} />;
   }
 
   return children;

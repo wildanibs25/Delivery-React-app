@@ -143,18 +143,18 @@ const Accounts = () => {
             buttonsStyling: false,
           }).then((result) => {
             if (result.isConfirmed) {
-              fetchDataAccounts();
+              window.location.reload();
             }
           });
         }
       });
   };
   useEffect(() => {
-     if (auth.user) {
-       cookies.set("lastPath", location.pathname, {
-         path: "/",
-       });
-     }
+    if (auth.user) {
+      cookies.set("lastPath", location.pathname, {
+        path: "/",
+      });
+    }
     fetchDataAccounts();
   }, [detail]);
 
@@ -188,6 +188,7 @@ const Accounts = () => {
             detail={detail}
             setDetail={setDetail}
             showForm={showForm}
+            setShowForm={setShowForm}
           />
         </div>
       </div>

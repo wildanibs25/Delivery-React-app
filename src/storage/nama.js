@@ -1,5 +1,5 @@
 const nama = () => {
-  const rest = "Ayam Campus";
+  const rest = "Chicken Chicken";
 
   return rest;
 };

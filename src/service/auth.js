@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import Cookies from "universal-cookie";
 import React, { createContext, useContext, useEffect, useState } from "react";
+import Cookies from "universal-cookie";
 import Axios from "../service/axios";
 import SegmentErrorCom from "../component/SegmentErrorCom";
 
@@ -26,10 +26,20 @@ const AuthProvider = ({ children }) => {
     }
   };
 
-  const logout = () => {
-    cookies.remove("ACCESS_TOKEN", { path: "/" });
-    cookies.remove("lastPath", { path: "/" });
-    setUser(null);
+  const logout = async () => {
+    const token = cookies.get("ACCESS_TOKEN");
+    Axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+    await Axios.post("logout")
+      .then(() => {
+        cookies.remove("ACCESS_TOKEN", { path: "/" });
+        cookies.remove("lastPath", { path: "/" });
+        setUser(null);
+      })
+      .catch(() => {
+        cookies.remove("ACCESS_TOKEN", { path: "/" });
+        cookies.remove("lastPath", { path: "/" });
+        setUser(null);
+      });
   };
 
   useEffect(() => {

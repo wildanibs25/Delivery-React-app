@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import Nama from "../storage/nama";
@@ -17,6 +18,7 @@ const NotFound = () => {
       cookies.remove("lastPath", { path: "/" });
     }
   }, []);
+
   return (
     <div>
       <style

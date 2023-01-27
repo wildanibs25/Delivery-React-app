@@ -1,18 +1,17 @@
 import React, { Fragment } from "react";
 import { BarChartCom, DonutChartCom } from "./App";
 
-// const image=;
-
 const StaticCom = () => {
   return (
     <Fragment>
       <div className="flex flex-grow mb-10">
         <div className="flex items-center justify-center md:h-full text-gray-800 md:py-10 md:px-6 cursor-default">
           <div className="grid lg:grid-cols-3 md:grid-cols-1 gap-6 w-full max-w-6xl mb-86">
+            
             <div className="flex items-center group [perspective:1000px]">
               <div className="relative h-full w-full rounded-xl shadow-xl transition-all duration-500 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)]">
                 <div className="inset-0">
-                  <div className="flex items-center p-4 bg-white rounded bg-white border border-gray-200 rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700">
+                  <div className="flex items-center p-4 bg-white border border-gray-200 rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700">
                     <div className="flex flex-shrink-0 items-center justify-center bg-green-200 h-16 w-16 rounded">
                       <svg
                         className="w-6 h-6 fill-current text-green-700"
@@ -47,7 +46,7 @@ const StaticCom = () => {
             <div className="flex items-center group [perspective:1000px]">
               <div className="relative h-full w-full rounded-xl shadow-xl transition-all duration-500 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)]">
                 <div className="inset-0">
-                  <div className="flex items-center p-4 bg-white rounded bg-white border border-gray-200 rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700">
+                  <div className="flex items-center p-4 bg-white border border-gray-200 rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700">
                     <div className="flex flex-shrink-0 items-center justify-center bg-red-200 h-16 w-16 rounded">
                       <svg
                         className="w-6 h-6 fill-current text-red-700"
@@ -82,7 +81,7 @@ const StaticCom = () => {
             <div className="flex items-center group [perspective:1000px]">
               <div className="relative h-full w-full rounded-xl shadow-xl transition-all duration-500 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)]">
                 <div className="inset-0">
-                  <div className="flex items-center p-4 bg-white rounded bg-white border border-gray-200 rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700">
+                  <div className="flex items-center p-4 bg-white border border-gray-200 rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700">
                     <div className="flex flex-shrink-0 items-center justify-center bg-green-200 h-16 w-16 rounded">
                       <svg
                         className="w-6 h-6 fill-current text-green-700"

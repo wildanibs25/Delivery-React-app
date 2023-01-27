@@ -134,7 +134,6 @@ const ModalCom = ({ counter }) => {
                             navigate("checkout", {
                               state: {
                                 totalPrice: countPrice,
-                                path: "Home"
                               },
                             });
                         }}

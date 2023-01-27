@@ -1,14 +1,12 @@
 import { Button, Carousel } from "flowbite-react";
 import React, { useEffect, useState } from "react";
 import { FaAngleDoubleRight } from "react-icons/fa";
-import {
-  ayam,
-  ayamKrispi,
-  resepAyam,
-} from "../storage/carousel/Carousel";
+import { ayam, ayamKrispi, resepAyam } from "../storage/carousel/Carousel";
+import Nama from "../storage/nama";
 
 const CarouselCom = () => {
-  
+  const nama = Nama();
+
   const [matches, setMatches] = useState(
     window.matchMedia("(min-width: 768px)").matches
   );
@@ -46,15 +44,12 @@ const CarouselCom = () => {
 
         <div className="lg:flex-grow md:w-1/2 lg:pr-24 md:pr-16 flex flex-col md:items-start md:text-left mb-16 md:mb-0 items-center text-center">
           <h1 className="title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-900">
-            Before they sold out
-            <br className="hidden lg:inline-block" />
-            readymade gluten
+            Welcome To <br className="hidden lg:inline-block" />
+            {nama} Restaurant
           </h1>
           <p className="mb-8 leading-relaxed">
-            Copper mug try-hard pitchfork pour-over freegan heirloom neutra air
-            plant cold-pressed tacos poke beard tote bag. Heirloom echo park
-            mlkshk tote bag selvage hot chicken authentic tumeric truffaut
-            hexagon try-hard chambray.
+            A reduced-price set menu, featuring a mix of top performers and
+            dishes that need a boost.
           </p>
           <div className="flex items-center justify-center">
             <Button
@@ -63,7 +58,7 @@ const CarouselCom = () => {
               onClick={scrollToDown}
             >
               <FaAngleDoubleRight className="animate-pulse mr-4 h-5 w-5" />
-              Ayo Segera Pesan
+              Let's Order
             </Button>
           </div>
         </div>

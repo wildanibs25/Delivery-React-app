@@ -256,8 +256,8 @@ const FormMenuCom = ({
                       <HiCloudUpload
                         className={
                           validation.image
-                            ? `w-24 h-24 mb-3 text-red-500 mb-5`
-                            : `w-24 h-24 mb-3 text-gray-400 mb-5`
+                            ? `w-24 h-24 text-red-500 mb-5`
+                            : `w-24 h-24 text-gray-400 mb-5`
                         }
                       />
                       <p

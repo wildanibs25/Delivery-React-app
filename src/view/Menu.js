@@ -193,7 +193,7 @@ const Menu = () => {
             buttonsStyling: false,
           }).then((result) => {
             if (result.isConfirmed) {
-              fetchDataMenu();
+              window.location.reload();
             }
           });
         }
