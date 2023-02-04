@@ -124,7 +124,7 @@ const AddressCom = ({ stringURL, fetchDataAddress, action = true }) => {
               clearInterval(fadeEffect);
             }
           }, 100);
-          
+
           await Axios.post("delete-alamat/" + id)
             .then(() => {
               TimerAlert().Toast.fire({
