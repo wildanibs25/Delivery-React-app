@@ -1,37 +1,26 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from "react";
 import Chart from "react-apexcharts";
 
-const DonutChartCom = () => {
-  const [options, setOptions] = useState({
-    chart: {
-      id: "basic-donut",
-    },
-    labels: [],
-    plotOptions: {
-      pie: {
-        donut: {
-          labels: {
-            show: true,
-            total: {
-              show: true,
-              showAlways: true,
-              fontSize: "24",
-              color: "#2787AB",
-            },
-          },
-        },
-      },
-    },
-  });
+const DonutChartCom = ({items}) => {
+  const [options, setOptions] = useState({});
 
   const [series, setSeries] = useState([]);
 
   useEffect(() => {
+    const labels = [];
+    const data = [];
+
+    items.forEach((item) => {
+      labels.push(item.menu.nama_menu);
+      data.push(+item.qty);
+    });
+
     setOptions({
       chart: {
         id: "basic-donut",
       },
-      labels: ["A", "B", "C", "D", "E"],
+      labels: labels,
       plotOptions: {
         pie: {
           donut: {
@@ -49,8 +38,9 @@ const DonutChartCom = () => {
       },
     });
 
-    setSeries([44, 55, 41, 17, 15]);
-  }, []);
+    setSeries(data);
+  }, [items]);
+
   return <Chart options={options} series={series} type="donut" width="450" />;
 };
 

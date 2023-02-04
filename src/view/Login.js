@@ -25,7 +25,7 @@ const Login = () => {
     const formData = new FormData();
 
     formData.append("email", email);
-    formData.append("password", password);
+    formData.append("password", b64EncodeUnicode(password));
 
     Axios.defaults.headers.common["Authorization"] = `Bearer ${cookies.get(
       "ACCESS_TOKEN"
@@ -58,6 +58,10 @@ const Login = () => {
           setValidation(error.response.data.error);
         }
       });
+  };
+
+  const b64EncodeUnicode = (str) => {
+    return btoa(encodeURIComponent(str));
   };
 
   useEffect(() => {
@@ -119,10 +123,10 @@ const Login = () => {
                     id="password"
                     value={password}
                     onChange={(e) => {
-                     setPassword(e.target.value);
-                     Object.keys(validation).length < 2 && validation.password
-                       ? setValidation([])
-                       : delete validation.password;
+                      setPassword(e.target.value);
+                      Object.keys(validation).length < 2 && validation.password
+                        ? setValidation([])
+                        : delete validation.password;
                     }}
                   />
                   {validation.password &&

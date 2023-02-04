@@ -62,17 +62,24 @@ const CardCom = ({ menu, selectItem }) => {
       <div className="container px-5 py-3 mx-auto">
         <div className="flex flex-wrap -m-4">
           {state.records.map((menu) => (
-            <Item key={menu.id_menu} menu={menu} selectItem={selectItem} />
+            <Item
+              key={menu.id_menu}
+              menu={menu}
+              selectItem={selectItem}
+              matches={isMobile.matches}
+            />
           ))}
         </div>
-        <div className="mt-9 mx-auto md:hidden">
-          <Pagination
-            className="ml-auto"
-            currentPage={state.currentPage}
-            totalPages={state.sizePage}
-            onPageChange={onPageChange}
-          />
-        </div>
+        {isMobile.matches && (
+          <div className="mt-9 mx-auto">
+            <Pagination
+              className="ml-auto"
+              currentPage={state.currentPage}
+              totalPages={state.sizePage}
+              onPageChange={onPageChange}
+            />
+          </div>
+        )}
       </div>
     </section>
   );

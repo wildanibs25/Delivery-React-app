@@ -92,7 +92,10 @@ const Order = () => {
 
     await Axios.get("pesanan-admin")
       .then((response) => {
-        modelDataOrder.setRecords(response.data.data);
+        const data = response.data.data.sort(function (a, b) {
+          return -1;
+        });
+        modelDataOrder.setRecords(data);
         setIsLoading(isLoading + 1);
       })
       .catch((error) => {

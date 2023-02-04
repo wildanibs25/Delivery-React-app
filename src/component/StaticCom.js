@@ -1,13 +1,40 @@
-import React, { Fragment } from "react";
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { Fragment, useEffect, useState } from "react";
+import Cookies from "universal-cookie";
+import Axios from "../service/axios";
 import { BarChartCom, DonutChartCom } from "./App";
 
 const StaticCom = () => {
+  const [items, setItems] = useState([]);
+  const [orders, setOrders] = useState([]);
+
+  const cookies = new Cookies();
+
+  const fetchData = async () => {
+    Axios.defaults.headers.common["Authorization"] = `Bearer ${cookies.get(
+      "ACCESS_TOKEN"
+    )}`;
+
+    Axios.get("item-admin").then((response) => {
+      // console.log(response.data.data);
+      setItems(response.data.data);
+    });
+
+    Axios.get("pesanan-admin").then((response) => {
+      // console.log(response.data.data);
+      setOrders(response.data.data);
+    });
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
   return (
     <Fragment>
       <div className="flex flex-grow mb-10">
         <div className="flex items-center justify-center md:h-full text-gray-800 md:py-10 md:px-6 cursor-default">
           <div className="grid lg:grid-cols-3 md:grid-cols-1 gap-6 w-full max-w-6xl mb-86">
-            
             <div className="flex items-center group [perspective:1000px]">
               <div className="relative h-full w-full rounded-xl shadow-xl transition-all duration-500 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)]">
                 <div className="inset-0">
@@ -118,34 +145,13 @@ const StaticCom = () => {
       <div className="flex flex-grow">
         <div className="grid md:grid-cols-2 grid-cols-1 gap-6 w-full max-w-6xl mb-86">
           <span className="mx-auto">
-            <BarChartCom />
+            <BarChartCom orders={orders} />
           </span>
           <span className="mx-auto">
-            <DonutChartCom />
+            <DonutChartCom items={items} />
           </span>
         </div>
       </div>
-      {/* <div className="group h-96 w-96 [perspective:1000px]">
-        <div className="relative h-full w-full rounded-xl shadow-xl transition-all duration-500 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)]">
-          <div className="absolute inset-0">
-            <img
-              className="h-full w-full rounded-xl object-cover shadow-xl shadow-black/40"
-              src="https://awsimages.detik.net.id/community/media/visual/2018/12/18/b950aed8-91de-4a5c-9024-dafa279aa580.png?w=750&q=90"
-              alt="..."
-            />
-          </div>
-          <div className="absolute inset-0 h-full w-full rounded-xl bg-black/80 px-12 text-center text-slate-200 [transform:rotateY(180deg)] [backface-visibility:hidden]">
-            <div className="flex min-h-full flex-col items-center justify-center">
-              <h1 className="text-3xl"> Jane Word</h1>
-              <p className="text-lg"> Delivered</p>
-              <p className="text-base">lorem ipsume</p>
-              <button className="mt-2 rounded-xl bg-neutral-800 py-1 px-2 text-sm hover:bg-neutral-900">
-                Read More
-              </button>
-            </div>
-          </div>
-        </div>
-      </div> */}
     </Fragment>
   );
 };

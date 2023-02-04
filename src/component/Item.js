@@ -4,7 +4,7 @@ import { HiClock, HiShoppingCart } from "react-icons/hi";
 import { FormatRupiah } from "./FormatRupiah";
 
 const Item = (props) => {
-  const { menu, selectItem } = props;
+  const { menu, selectItem, matches } = props;
   const {
     kategori_menu,
     nama_menu,
@@ -29,12 +29,14 @@ const Item = (props) => {
           <h1 className="title-font text-lg font-medium text-gray-900 mb-1">
             {nama_menu}
           </h1>
-          <h1 className="text-gray-900 mb-1">{FormatRupiah(harga_menu)}</h1>
+          <h1 className={`text-gray-900 mb-1 ${!matches && "hidden"}`}>
+            {FormatRupiah(harga_menu)}
+          </h1>
           <p className="leading-relaxed text-sm mb-3">{deskripsi_menu}</p>
-          <div className="flex items-center flex-nowrap ">
+          <div className="flex items-center">
             {status_menu !== "Tersedia" ? (
-              <Badge className="px-3" color="indigo" icon={HiClock}>
-                Sedang Tidak Tersedia
+              <Badge className="px-3 my-2" color="indigo" icon={HiClock}>
+                Not Available
               </Badge>
             ) : (
               <Button
@@ -47,17 +49,12 @@ const Item = (props) => {
               </Button>
             )}
 
-            <span className="text-gray-400 pl-2 inline-flex items-center lg:ml-auto md:ml-0 ml-auto leading-none text-sm py-1 border-gray-200">
-              <HiShoppingCart
-                className="w-4 h-4 mr-1"
-                stroke="currentColor"
-                strokeWidth={2}
-                fill="none"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                viewBox="0 0 24 24"
-              />
-              1.2K
+            <span
+              className={`text-gray-400 pl-2 inline-flex items-center lg:ml-auto md:ml-0 ml-auto leading-none text-base py-1 border-gray-200 ${
+                matches && "hidden"
+              }`}
+            >
+              {FormatRupiah(harga_menu)}
             </span>
           </div>
         </div>

@@ -7,4 +7,5 @@ const Axios = axios.create({
 
 // Axios.defaults.timeout = 1000;
 
+
 export default Axios;

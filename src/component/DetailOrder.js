@@ -135,7 +135,7 @@ const DetailOrder = ({ detail, setDetail }) => {
       <div className="my-5">
         <h1
           className="mb-2 text-xl cursor-pointer w-2/5"
-          onClick={() => navigate(`/invoice=${nota}`)}
+          onClick={() => navigate(`/invoice/${nota}`)}
         >
           Detail Order <span className="text-blue-400 text-base">#{nota}</span>
         </h1>
