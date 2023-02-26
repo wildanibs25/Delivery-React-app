@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/alt-text */
 import React, { useEffect, useState } from "react";
 import { NavLink, Outlet, useLocation } from "react-router-dom";
-import { ConfirmLogout, FooterCom } from "../component/App";
+import { ConfirmLogout, FooterCom } from "../component";
 import logoAyam from "../storage/logoAyam.png";
 import {
   HiChartPie,
@@ -20,10 +20,12 @@ import { Avatar, Card } from "flowbite-react";
 import { useAuth } from "../service/auth";
 import Nama from "../storage/nama";
 import rew from "../storage/ss.png";
+import baseURL from "../service/baseURL";
 
 const Admin = () => {
   const auth = useAuth();
   const nama = Nama();
+  const url = baseURL();
   const [open, setOpen] = useState(true);
   const [openSubMenu, setOpenSubMenu] = useState(false);
   const [isActive, setIsActive] = useState("dashboard");
@@ -190,7 +192,7 @@ const Admin = () => {
                   className="h-10 w-10 sm:h-10"
                   img={
                     auth.user.foto !== "foto"
-                      ? auth.user.foto
+                      ? url + auth.user.foto
                       : `https://ui-avatars.com/api/?name=${auth.user.nama}`
                   }
                   rounded={true}
@@ -214,7 +216,7 @@ const Admin = () => {
                     to={"/settings"}
                     className={`flex hover:rounded-full p-2 cursor-pointer dark:text-white hover:bg-white hover:text-sky-500 dark:hover:bg-white text-white text-base items-center gap-x-4 mt-2`}
                   >
-                    <BsFillGearFill />
+                    <BsFillGearFill className="w-5 h-5 dark:text-white group-hover:text-sky-500 dark:group-hover:text-sky-500" />
                     Settings
                   </NavLink>
                 </li>
@@ -222,7 +224,7 @@ const Admin = () => {
                   className={`flex hover:rounded-full p-2 cursor-pointer dark:text-white hover:bg-white hover:text-sky-500 dark:hover:bg-white text-white text-base items-center gap-x-4`}
                   onClick={() => ConfirmLogout(auth)}
                 >
-                  <FaPowerOff />
+                  <FaPowerOff className="w-5 h-5 dark:text-white group-hover:text-sky-500 dark:group-hover:text-sky-500" />
                   Sign Out
                 </li>
               </ul>

@@ -12,8 +12,9 @@ import React, { useEffect, useState } from "react";
 import Cookies from "universal-cookie";
 import { useAuth } from "../service/auth";
 import Axios from "../service/axios";
-import { AlertCom, SegmentErrorCom, TimerAlert } from "./App";
+import { AlertCom, SegmentErrorCom, TimerAlert } from ".";
 import { HiCloudUpload } from "react-icons/hi";
+import baseURL from "../service/baseURL";
 
 const FormMenuCom = ({
   fetchDataMenu,
@@ -23,7 +24,7 @@ const FormMenuCom = ({
   records,
 }) => {
   const auth = useAuth();
-
+  const url = baseURL();
   const [id, setId] = useState("");
   const [name, setName] = useState("");
   const [category, setCategory] = useState("");
@@ -40,7 +41,7 @@ const FormMenuCom = ({
     setPrice(records.harga_menu);
     setCategory(records.kategori_menu);
     setDescription(records.deskripsi_menu);
-    setImageDisplay(records.gambar_menu);
+    setImageDisplay(url+records.gambar_menu);
   };
 
   const clearRecordsMenu = () => {

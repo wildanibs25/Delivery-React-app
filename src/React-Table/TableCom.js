@@ -3,7 +3,7 @@ import React, { Fragment, useEffect, useState } from "react";
 import { resolveRecord } from "./resolveRecord";
 import { Card, Pagination, TextInput } from "flowbite-react";
 import { FaSearch, FaSortDown, FaSortUp } from "react-icons/fa";
-import { FormatRupiah } from "../component/FormatRupiah";
+import { FormatRupiah } from "../component/FormatRupiahCom";
 import { FaTimes } from "react-icons/fa";
 
 const TableCom = ({ model, isLoading, totalTable, keyword }) => {

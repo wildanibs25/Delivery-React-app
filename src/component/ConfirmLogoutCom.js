@@ -1,5 +1,5 @@
 import Swal from "sweetalert2";
-import TimerAlert from "./TimerAlert";
+import TimerAlert from "./TimerAlertCom";
 
 const ConfirmLogout = (auth) => {
   return Swal.fire({

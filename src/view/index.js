@@ -11,6 +11,8 @@ import Menu from "./Menu";
 import SettingAccount from "./SettingAccount";
 import Order from "./Order";
 import Accounts from "./Accounts";
+import Information from "./Information";
+import History from "./History";
 
 export {
   Home,
@@ -26,4 +28,6 @@ export {
   SettingAccount,
   Order,
   Accounts,
+  Information,
+  History
 };

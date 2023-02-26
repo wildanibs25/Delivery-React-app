@@ -5,7 +5,7 @@ import React, { Fragment, useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import Swal from "sweetalert2";
 import Cookies from "universal-cookie";
-import DetailOrder from "../component/DetailOrder";
+import DetailOrder from "../component/DetailOrderCom";
 import SegmentErrorCom from "../component/SegmentErrorCom";
 import { resolveRecord, TableCom, useTable } from "../React-Table";
 import { useAuth } from "../service/auth";
@@ -92,7 +92,7 @@ const Order = () => {
 
     await Axios.get("pesanan-admin")
       .then((response) => {
-        const data = response.data.data.sort(function (a, b) {
+        const data = response.data.data.sort(function () {
           return -1;
         });
         modelDataOrder.setRecords(data);
@@ -135,7 +135,7 @@ const Order = () => {
   return (
     <Fragment>
       <div className="flex items-center">
-        <h1 className="text-2xl">Order</h1>
+        <h1 className="text-2xl">Orders</h1>
         <span
           className={`${
             showForm ? "ml-auto cursor-pointer text-blue-400" : "hidden"

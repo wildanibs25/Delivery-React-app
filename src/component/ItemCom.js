@@ -1,9 +1,11 @@
 import { Badge, Button } from "flowbite-react";
 import React from "react";
 import { HiClock, HiShoppingCart } from "react-icons/hi";
-import { FormatRupiah } from "./FormatRupiah";
+import baseURL from "../service/baseURL";
+import { FormatRupiah } from "./FormatRupiahCom";
 
 const Item = (props) => {
+  const url = baseURL();
   const { menu, selectItem, matches } = props;
   const {
     kategori_menu,
@@ -19,7 +21,7 @@ const Item = (props) => {
       <div className="h-full border-2 border-gray-200 border-opacity-60 rounded-lg overflow-hidden">
         <img
           className="lg:h-48 md:h-36 w-full object-cover object-center"
-          src={gambar_menu}
+          src={url+gambar_menu}
           alt="blog"
         />
         <div className="p-6">

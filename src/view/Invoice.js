@@ -4,16 +4,18 @@ import React, { useEffect, useState } from "react";
 import { NavLink, useNavigate, useParams } from "react-router-dom";
 import Swal from "sweetalert2";
 import Cookies from "universal-cookie";
-import { FormatRupiah, SegmentErrorCom, StepCom } from "../component/App";
+import { FormatRupiah, SegmentErrorCom, StepCom } from "../component";
 import { resolveRecord, TableCom, useTable } from "../React-Table";
 import { useAuth } from "../service/auth";
 import Axios from "../service/axios";
 import logoAyam from "../storage/logoAyam.png";
 import nama from "../storage/nama";
+import baseURL from "../service/baseURL";
 
 const Invoice = () => {
   const auth = useAuth();
   const params = useParams();
+  const url = baseURL();
   const [isLoading, setIsLoading] = useState(0);
   const [invoice, setInvoice] = useState([]);
   const navigate = useNavigate();
@@ -39,7 +41,7 @@ const Invoice = () => {
       <div className="flex items-center">
         <Avatar
           className="object-cover"
-          img={resolveRecord(record, column.image)}
+          img={url+resolveRecord(record, column.image)}
         />
         <span className="ml-2">{resolveRecord(record, column.field)}</span>
       </div>

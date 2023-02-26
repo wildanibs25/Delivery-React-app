@@ -7,7 +7,7 @@ import Cookies from "universal-cookie";
 import { useAuth } from "../service/auth";
 import logoAyam from "../storage/logoAyam.png";
 import Nama from "../storage/nama";
-import { TimerAlert, AlertCom, FormPasswordCom } from "../component/App";
+import { TimerAlert, AlertCom, FormPasswordCom } from "../component";
 
 const Login = () => {
   const auth = useAuth();

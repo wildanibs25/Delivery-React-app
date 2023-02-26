@@ -1,8 +1,10 @@
 import axios from "axios";
+import baseURL from "./baseURL";
 
+const url = baseURL()
 // Set config defaults when creating the instance
 const Axios = axios.create({
-  baseURL: "http://192.168.43.222:8000/api/",
+  baseURL: `${url}/api/`,
 });
 
 // Axios.defaults.timeout = 1000;

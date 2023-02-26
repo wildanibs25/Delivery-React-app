@@ -15,7 +15,7 @@ import {
   FooterCom,
   NavbarCom,
   SegmentErrorCom,
-} from "../component/App";
+} from "../component";
 import SkeletonCom from "../component/SkeletonCom";
 
 const Home = () => {

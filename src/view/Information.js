@@ -1,17 +1,16 @@
 import { Card } from "flowbite-react";
 import React from "react";
 import { Outlet } from "react-router-dom";
-import {NavbarCom, FooterCom} from "../component";
+import { FooterCom, NavbarCom } from "../component";
 
-
-const User = () => {
+const Information = () => {
   return (
-    <Card className="px-0">
+   <Card>
       <NavbarCom />
       <Outlet />
       <FooterCom />
     </ Card>
   );
-}
+};
 
-export default User
+export default Information;

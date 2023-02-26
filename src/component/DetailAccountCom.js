@@ -16,7 +16,7 @@ import { FaTrashAlt } from "react-icons/fa";
 import AlertCom from "./AlertCom";
 import Axios from "../service/axios";
 import SegmentErrorCom from "./SegmentErrorCom";
-import TimerAlert from "./TimerAlert";
+import TimerAlert from "./TimerAlertCom";
 import { useAuth } from "../service/auth";
 import Cookies from "universal-cookie";
 import FormPasswordCom from "./FormPasswordCom";
@@ -24,9 +24,11 @@ import AddressCom from "./AddressCom";
 import { useNavigate } from "react-router-dom";
 import FormDateCom from "./FormDateCom";
 import Swal from "sweetalert2";
+import baseURL from "../service/baseURL";
 
 const DetailAccount = ({ detail, setDetail, showForm, setShowForm }) => {
   const auth = useAuth();
+  const url = baseURL();
   const [id, setId] = useState("");
   const [image, setImage] = useState("");
   const [sendImage, setSendImage] = useState("");
@@ -205,7 +207,6 @@ const DetailAccount = ({ detail, setDetail, showForm, setShowForm }) => {
       setValidation([]);
       clearRecordsMenu();
     }
-
     fetchData();
   }, [detail, showForm]);
 
@@ -235,7 +236,7 @@ const DetailAccount = ({ detail, setDetail, showForm, setShowForm }) => {
                   rounded={true}
                   size="xl"
                   img={
-                    image !== "foto"
+                    image !== url+"foto"
                       ? image
                       : `https://ui-avatars.com/api/?name=${name}`
                   }

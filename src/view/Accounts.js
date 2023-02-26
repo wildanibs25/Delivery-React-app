@@ -4,13 +4,15 @@ import React, { Fragment, useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import Swal from "sweetalert2";
 import Cookies from "universal-cookie";
-import { DetailAccount, SegmentErrorCom } from "../component/App";
+import { DetailAccount, SegmentErrorCom } from "../component";
 import { resolveRecord, TableCom, useTable } from "../React-Table";
 import { useAuth } from "../service/auth";
 import Axios from "../service/axios";
+import baseURL from "../service/baseURL";
 
 const Accounts = () => {
   const auth = useAuth();
+  const url = baseURL();
   const [isLoading, setIsLoading] = useState(0);
   const [showForm, setShowForm] = useState(false);
   const [detail, setDetail] = useState([]);
@@ -26,7 +28,7 @@ const Accounts = () => {
           className="object-cover"
           rounded={true}
           img={
-            resolveRecord(record, column.image) !== "foto"
+            resolveRecord(record, column.image) !== url+"foto"
               ? resolveRecord(record, column.image)
               : `https://ui-avatars.com/api/?name=${resolveRecord(
                   record,
@@ -122,6 +124,7 @@ const Accounts = () => {
         const data = response.data.data;
         data.forEach((item) => {
           item.is_admin = item.is_admin === 1 ? "Admin" : "Customer";
+          item.foto = url+item.foto;
         });
         modelDataAccounts.setRecords(data);
         setIsLoading(isLoading + 1);
@@ -161,7 +164,7 @@ const Accounts = () => {
   return (
     <Fragment>
       <div className="flex items-center">
-        <h1 className="text-2xl">Order</h1>
+        <h1 className="text-2xl">Accounts</h1>
         <span
           className={`${
             showForm ? "ml-auto cursor-pointer text-blue-400" : "hidden"

@@ -1,6 +1,7 @@
 import { Avatar } from "flowbite-react";
 import React, { useEffect, useState } from "react";
-import Counter from "./Counter";
+import Counter from "./CounterCom";
+import baseURL from "../service/baseURL";
 
 const ItemOrder = (props) => {
   const {
@@ -9,6 +10,7 @@ const ItemOrder = (props) => {
     editItem,
   } = props;
 
+  const url = baseURL();
   const { nama_menu, harga_menu, gambar_menu } = menu;
 
   const [itemQty, setItemQty] = useState(0);
@@ -29,7 +31,7 @@ const ItemOrder = (props) => {
           scope="row"
           className="font-medium text-gray-900 whitespace-nowrap dark:text-white"
         >
-          <Avatar img={gambar_menu} />
+          <Avatar img={url+gambar_menu} />
           {nama_menu}
         </th>
         <td>

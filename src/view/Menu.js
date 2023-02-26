@@ -13,11 +13,13 @@ import {
   SegmentErrorCom,
   TimerAlert,
   ToggleSwitchCom,
-} from "../component/App";
+} from "../component";
 import { useLocation } from "react-router-dom";
+import baseURL from "../service/baseURL";
 
 const Menu = () => {
   const auth = useAuth();
+  const url = baseURL();
   const [records, setRecords] = useState([]);
   const [showForm, setShowForm] = useState(false);
   const [isLoading, setIsLoading] = useState(0);
@@ -50,7 +52,7 @@ const Menu = () => {
   };
 
   const onImage = (record, column) => {
-    return <Avatar img={resolveRecord(record, column.field)} />;
+    return <Avatar img={url+resolveRecord(record, column.field)} />;
   };
 
   const onFormatRupiah = (record, column) => {

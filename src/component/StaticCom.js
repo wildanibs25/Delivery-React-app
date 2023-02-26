@@ -2,7 +2,7 @@
 import React, { Fragment, useEffect, useState } from "react";
 import Cookies from "universal-cookie";
 import Axios from "../service/axios";
-import { BarChartCom, DonutChartCom, FormatRupiah } from "./App";
+import { BarChartCom, DonutChartCom, FormatRupiah } from ".";
 
 const StaticCom = () => {
   const [items, setItems] = useState([]);
@@ -55,7 +55,7 @@ const StaticCom = () => {
 
   const persentase = (next, last) => {
     let persen = ((next - last) / last) * 100;
-    persen = persen === Infinity ? 100 : persen;
+    persen = persen === Infinity ? 100 : isNaN(persen) ? 0 : persen;
     return (
       <span
         className={`${
@@ -103,9 +103,9 @@ const StaticCom = () => {
   return (
     <Fragment>
       <div className="flex flex-grow mb-10">
-        <div className="flex items-center justify-center md:h-full text-gray-800 md:py-10 md:px-6 cursor-default">
+        <div className="flex flex-grow items-center justify-center mx-auto md:h-full text-gray-800 md:py-10 md:px-6 cursor-default">
           <div className="grid lg:grid-cols-3 md:grid-cols-1 gap-6 w-full max-w-6xl items-center justify-center mb-86">
-            <div className="flex items-center group [perspective:1000px]">
+            <div className="flex flex-grow items-center group [perspective:1000px] min-w-72">
               <div className="relative h-full w-full rounded-xl shadow-xl transition-all duration-500 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)]">
                 <div className="inset-0">
                   <div className="flex items-center p-4 bg-white border border-gray-200 rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700">
@@ -115,7 +115,7 @@ const StaticCom = () => {
                         {FormatRupiah(date.today)}
                       </span>
                       <div className="flex items-center justify-between">
-                        <span className="text-gray-500">Today Earnings</span>
+                        <span className="text-gray-500">Today</span>
                         {persentase(date.today, date.yesterday)}
                       </div>
                     </div>
@@ -130,9 +130,7 @@ const StaticCom = () => {
                           {FormatRupiah(date.yesterday)}
                         </span>
                         <div className="flex items-center justify-between">
-                          <span className="text-gray-500">
-                            Yesterday Earnings
-                          </span>
+                          <span className="text-gray-500">Yesterday</span>
                           {persentase(date.today, date.yesterday)}
                         </div>
                       </div>
@@ -142,7 +140,7 @@ const StaticCom = () => {
               </div>
             </div>
 
-            <div className="flex items-center group [perspective:1000px]">
+            <div className="flex flex-grow items-center group [perspective:1000px] min-w-72">
               <div className="relative h-full w-full rounded-xl shadow-xl transition-all duration-500 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)]">
                 <div className="inset-0">
                   <div className="flex items-center p-4 bg-white border border-gray-200 rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700">
@@ -152,9 +150,7 @@ const StaticCom = () => {
                         {FormatRupiah(date.month)}
                       </span>
                       <div className="flex items-center justify-between">
-                        <span className="text-gray-500">
-                          This Month's Income
-                        </span>
+                        <span className="text-gray-500">This Month</span>
                         {persentase(date.month, date.lastMonth)}
                       </div>
                     </div>
@@ -169,9 +165,7 @@ const StaticCom = () => {
                           {FormatRupiah(date.lastMonth)}
                         </span>
                         <div className="flex items-center justify-between">
-                          <span className="text-gray-500">
-                            Last Month's Income
-                          </span>
+                          <span className="text-gray-500">Last Month</span>
                           {persentase(date.month, date.lastMonth)}
                         </div>
                       </div>
@@ -181,7 +175,7 @@ const StaticCom = () => {
               </div>
             </div>
 
-            <div className="flex items-center group [perspective:1000px]">
+            <div className="flex flex-grow items-center group [perspective:1000px] min-w-72">
               <div className="relative h-full w-full rounded-xl shadow-xl transition-all duration-500 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)]">
                 <div className="inset-0">
                   <div className="flex items-center p-4 bg-white border border-gray-200 rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700">
@@ -191,9 +185,7 @@ const StaticCom = () => {
                         {FormatRupiah(date.year)}
                       </span>
                       <div className="flex items-center justify-between">
-                        <span className="text-gray-500">
-                          This Year's Income
-                        </span>
+                        <span className="text-gray-500">This Year</span>
                         <span className="text-green-500 text-sm font-semibold ml-2">
                           {persentase(date.year, date.lastYear)}
                         </span>
@@ -210,9 +202,7 @@ const StaticCom = () => {
                           {FormatRupiah(date.lastYear)}
                         </span>
                         <div className="flex items-center justify-between">
-                          <span className="text-gray-500">
-                            Last Year's Income
-                          </span>
+                          <span className="text-gray-500">Last Year</span>
                           <span className="text-green-500 text-sm font-semibold ml-2">
                             {persentase(date.year, date.lastYear)}
                           </span>

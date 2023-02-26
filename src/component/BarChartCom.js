@@ -2,7 +2,7 @@
 import { getMonth, getYear } from "date-fns";
 import React, { useEffect, useState } from "react";
 import Chart from "react-apexcharts";
-import { FormatRupiah } from "./FormatRupiah";
+import { FormatRupiah } from "./FormatRupiahCom";
 
 const BarChartCom = ({ orders }) => {
   const [options, setOptions] = useState({});
@@ -17,9 +17,8 @@ const BarChartCom = ({ orders }) => {
     }
     return FormatRupiah(val);
   };
-  
+
   useEffect(() => {
-  
     const dataSeries = [];
 
     months.forEach((month) => {
@@ -27,7 +26,7 @@ const BarChartCom = ({ orders }) => {
       orders.forEach((order) => {
         if (
           order.status_pesanan === "Finished" &&
-          month === getMonth(new Date(order.created_at)) && 
+          month === getMonth(new Date(order.created_at)) &&
           getYear(new Date(order.created_at)) === getYear(new Date())
         ) {
           perMonth = perMonth + order.total_harga;

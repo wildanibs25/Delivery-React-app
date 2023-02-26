@@ -1,18 +1,20 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from "react";
 import { Avatar, Button, Card } from "flowbite-react";
-import { FormatDate } from "./FormatDate";
+import { FormatDate } from "./FormatDateCom";
 import { resolveRecord, TableCom, useTable } from "../React-Table";
-import { FormatRupiah } from "./FormatRupiah";
+import { FormatRupiah } from "./FormatRupiahCom";
 import Axios from "../service/axios";
 import Cookies from "universal-cookie";
 import { useNavigate } from "react-router-dom";
 import SegmentErrorCom from "./SegmentErrorCom";
-import TimerAlert from "./TimerAlert";
+import TimerAlert from "./TimerAlertCom";
 import { useAuth } from "../service/auth";
+import baseURL from "../service/baseURL";
 
 const DetailOrder = ({ detail, setDetail }) => {
   const auth = useAuth();
+  const url = baseURL();
 
   const {
     nota,
@@ -46,7 +48,7 @@ const DetailOrder = ({ detail, setDetail }) => {
       <div className="flex items-center">
         <Avatar
           className="object-cover"
-          img={resolveRecord(record, column.image)}
+          img={url+resolveRecord(record, column.image)}
         />
         <span className="ml-2">{resolveRecord(record, column.field)}</span>
       </div>

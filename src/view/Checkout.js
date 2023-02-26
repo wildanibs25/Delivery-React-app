@@ -18,7 +18,7 @@ import {
   TimerAlert,
   AddressCom,
   BreadcrumbCom,
-} from "../component/App";
+} from "../component";
 import { useAuth } from "../service/auth";
 import Axios from "../service/axios";
 import logoAyam from "../storage/logoAyam.png";

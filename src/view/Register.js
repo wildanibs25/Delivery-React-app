@@ -9,7 +9,7 @@ import {
   AlertCom,
   FormPasswordCom,
   FormDateCom,
-} from "../component/App";
+} from "../component";
 
 const Register = () => {
   const nama = Nama();
@@ -318,7 +318,7 @@ const Register = () => {
                     >
                       I agree to the{" "}
                       <NavLink
-                        to="/forms"
+                        to="/information/terms"
                         className="text-blue-600 hover:underline dark:text-blue-500"
                       >
                         terms and conditions

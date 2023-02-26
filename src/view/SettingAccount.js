@@ -20,12 +20,14 @@ import {
   FormPasswordCom,
   SegmentErrorCom,
   TimerAlert,
-} from "../component/App";
+} from "../component";
 import { useAuth } from "../service/auth";
 import Axios from "../service/axios";
+import baseURL from "../service/baseURL";
 
 const SettingAccount = () => {
   const auth = useAuth();
+  const url = baseURL();
   const [image, setImage] = useState("");
   const [sendImage, setSendImage] = useState("");
   const [name, setName] = useState("");
@@ -44,7 +46,7 @@ const SettingAccount = () => {
   const location = useLocation();
 
   const fetchDataUser = () => {
-    setImage(auth.user.foto);
+    setImage(url+auth.user.foto);
     setName(auth.user.nama);
     setEmail(auth.user.email);
     setHp(auth.user.no_hp);

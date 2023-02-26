@@ -3,13 +3,15 @@ import React, { Fragment } from "react";
 import { Link, NavLink } from "react-router-dom";
 
 import { useAuth } from "../service/auth";
+import baseURL from "../service/baseURL";
 import logoAyam from "../storage/logoAyam.png";
 import Nama from "../storage/nama";
-import ConfirmLogout from "./ConfirmLogout";
+import ConfirmLogout from "./ConfirmLogoutCom";
 
 const NavbarCom = () => {
   const auth = useAuth();
   const nama = Nama();
+  const url = baseURL();
 
   const logout = () => {
     ConfirmLogout(auth);
@@ -35,7 +37,7 @@ const NavbarCom = () => {
               <Avatar
                 img={
                   auth.user.foto !== "foto"
-                    ? auth.user.foto
+                    ? url+auth.user.foto
                     : `https://ui-avatars.com/api/?name=${auth.user.nama}`
                 }
                 alt="User settings"
@@ -54,7 +56,7 @@ const NavbarCom = () => {
                 <Dropdown.Item>Dashboard</Dropdown.Item>
               </Link>
             ) : undefined}
-            <Link to={"#"}>
+            <Link to={"/history"}>
               <Dropdown.Item>History</Dropdown.Item>
             </Link>
             <Link to={"/settings"}>

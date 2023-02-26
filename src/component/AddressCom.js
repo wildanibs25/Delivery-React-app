@@ -5,7 +5,7 @@ import Axios from "../service/axios";
 import { IoChevronForwardOutline, IoChevronDownOutline } from "react-icons/io5";
 import Cookies from "universal-cookie";
 import { useAuth } from "../service/auth";
-import TimerAlert from "./TimerAlert";
+import TimerAlert from "./TimerAlertCom";
 import Swal from "sweetalert2";
 import SegmentErrorCom from "./SegmentErrorCom";
 import AlertCom from "./AlertCom";

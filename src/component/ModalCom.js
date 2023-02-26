@@ -1,13 +1,13 @@
 import { Button, Modal } from "flowbite-react";
 import { HiShoppingCart } from "react-icons/hi";
 import React, { useState } from "react";
-import ItemOrder from "./ItemOrder";
+import ItemOrder from "./ItemOrderCom";
 import Axios from "../service/axios";
 import { useNavigate } from "react-router-dom";
 import Cookies from "universal-cookie";
 import { useAuth } from "../service/auth";
 import SegmentErrorCom from "./SegmentErrorCom";
-import { FormatRupiah } from "./FormatRupiah";
+import { FormatRupiah } from "./FormatRupiahCom";
 
 const ModalCom = ({ counter }) => {
   const auth = useAuth();

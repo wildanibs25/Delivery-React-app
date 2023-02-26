@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { Pagination } from "flowbite-react";
 import React, { useEffect, useState } from "react";
-import Item from "./Item";
+import Item from "./ItemCom";
 
 const CardCom = ({ menu, selectItem }) => {
   const isMobile = window.matchMedia("only screen and (max-width: 830px)");

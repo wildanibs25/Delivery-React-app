@@ -8,7 +8,9 @@ import {
   Admin,
   Checkout,
   Dashboard,
+  History,
   Home,
+  Information,
   Invoice,
   Login,
   Menu,
@@ -17,7 +19,8 @@ import {
   Register,
   SettingAccount,
   User,
-} from "./view/App";
+} from "./view";
+import { About, Team, Contact, Terms } from "./view/informationPage";
 
 function App() {
   return (
@@ -34,6 +37,7 @@ function App() {
           }
         >
           <Route path="settings" element={<SettingAccount />} />
+          <Route path="history" element={<History />} />
           <Route path="checkout" element={<Checkout />} />
         </Route>
 
@@ -68,8 +72,16 @@ function App() {
           }
         />
 
-        <Route path="Invoice/:id" element={<User />}>
+        <Route path="/invoice/:id" element={<User />}>
           <Route index element={<Invoice />} />
+        </Route>
+
+        <Route path="/information" element={<Information />}>
+          <Route index element={<About />} />
+          <Route path="about" element={<About />} />
+          <Route path="team" element={<Team />} />
+          <Route path="contact" element={<Contact />} />
+          <Route path="terms" element={<Terms />} />
         </Route>
 
         <Route path="*" element={<NotFound />} />
