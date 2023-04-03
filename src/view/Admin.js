@@ -1,7 +1,8 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable jsx-a11y/alt-text */
 import React, { useEffect, useState } from "react";
 import { NavLink, Outlet, useLocation } from "react-router-dom";
-import { ConfirmLogout, FooterCom } from "../component";
+import { ConfirmLogout, FooterCom, TimerAlert } from "../component";
 import logoAyam from "../storage/logoAyam.png";
 import {
   HiChartPie,
@@ -16,11 +17,14 @@ import {
   FaPowerOff,
 } from "react-icons/fa";
 import control from "../storage/control.png";
-import { Avatar, Card } from "flowbite-react";
+import { Avatar, Badge, Card } from "flowbite-react";
 import { useAuth } from "../service/auth";
 import Nama from "../storage/nama";
 import rew from "../storage/ss.png";
 import baseURL from "../service/baseURL";
+import pusherChannel from "../service/pusher";
+import Axios from "../service/axios";
+import Cookies from "universal-cookie";
 
 const Admin = () => {
   const auth = useAuth();
@@ -30,6 +34,8 @@ const Admin = () => {
   const [openSubMenu, setOpenSubMenu] = useState(false);
   const [isActive, setIsActive] = useState("dashboard");
   const isMobile = window.matchMedia("only screen and (max-width: 830px)");
+  const [count, setCount] = useState(0);
+  const cookies = new Cookies();
 
   const location = useLocation();
 
@@ -38,13 +44,31 @@ const Admin = () => {
   const noActiveClassName =
     "group flex rounded-l-full relative p-2 cursor-pointer dark:text-white hover:bg-white hover:text-sky-500 dark:hover:bg-sky-500 text-white text-base items-center gap-x-4 mt-2";
 
+  const orderCounts = async () => {
+    Axios.defaults.headers.common["Authorization"] = `Bearer ${cookies.get(
+      "ACCESS_TOKEN"
+    )}`;
+
+    await Axios.get("count-orders").then((response) => {
+      setCount(response.data.data.length);
+    });
+  };
+
   useEffect(() => {
+    orderCounts();
     if (isMobile.matches) {
       setOpen(false);
     }
     setIsActive(
       location.pathname.substring(location.pathname.lastIndexOf("/") + 1)
     );
+    pusherChannel.bind("App\\Events\\PemesananEvent", function (data) {
+      orderCounts();
+      TimerAlert().Toast.fire({
+        icon: "info",
+        title: "New Order",
+      });
+    });
   }, [isMobile.matches, location.pathname]);
 
   return (
@@ -149,7 +173,10 @@ const Admin = () => {
                 } absolute ${
                   open ? "-right-[1.35rem]" : "-right-[2.35rem] -translate-x-1"
                 } -top-[1.22rem] inset-y-0 h-[5.05rem] w-16`}
-              />
+              />{" "}
+              <Badge className={`${!open && "hidden"}`} color={"info"}>
+                {count}
+              </Badge>
             </NavLink>
           </li>
           <li>

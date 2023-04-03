@@ -10,7 +10,6 @@ import Item from "./ItemCom";
 import ItemOrder from "./ItemOrderCom";
 import ModalCom from "./ModalCom";
 import Counter from "./CounterCom";
-import SidebarCom from "./SidebarCom";
 import StaticCom from "./StaticCom";
 import AddressCom from "./AddressCom";
 import TimerAlert from "./TimerAlertCom";
@@ -54,7 +53,6 @@ export {
   ModalCom,
   NavbarCom,
   SegmentErrorCom,
-  SidebarCom,
   SkeletonCom,
   StaticCom,
   StepCom,
