@@ -135,7 +135,7 @@ const Checkout = () => {
           <img className="w-20 h-20 mr-2" src={logoAyam} alt={"Flowbite"} />
           {Nama()}
         </NavLink>
-        <Card className="md:mx-36 md:mb-36">
+        <Card className="md:mx-36 md:mb-36 -mx-5">
           <h1 className="text-2xl mb-5">Checkout Your Order</h1>
           <form onSubmit={onCheckout} className="flex flex-col gap-4">
             <div>
@@ -287,9 +287,19 @@ const Checkout = () => {
                 </span>
               </div>
             </button>
-            <Button type="submit" gradientDuoTone="cyanToBlue">
-              Submit
-            </Button>
+            {isNaN(totalPrice) ? (
+              <Button
+                type="button"
+                onClick={() => navigate("/", { replace: true })}
+                gradientDuoTone="cyanToBlue"
+              >
+                Submit
+              </Button>
+            ) : (
+              <Button type="submit" gradientDuoTone="cyanToBlue">
+                Submit
+              </Button>
+            )}
           </form>
         </Card>
       </div>
