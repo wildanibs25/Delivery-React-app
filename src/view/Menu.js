@@ -7,7 +7,6 @@ import Axios from "../service/axios";
 import Swal from "sweetalert2";
 import Cookies from "universal-cookie";
 import {
-  FormatDate,
   FormatRupiah,
   FormMenuCom,
   SegmentErrorCom,
@@ -59,10 +58,6 @@ const Menu = () => {
     return FormatRupiah(resolveRecord(record, column.field));
   };
 
-  const onFormatDate = (record, column) => {
-    return FormatDate(resolveRecord(record, column.field));
-  };
-
   const modelDataMenu = useTable({
     columns: [
       {
@@ -95,18 +90,6 @@ const Menu = () => {
       {
         header: "Description",
         field: "deskripsi_menu",
-        sortable: true,
-      },
-      {
-        header: "Create",
-        field: "created_at",
-        component: onFormatDate,
-        sortable: true,
-      },
-      {
-        header: "Update",
-        field: "updated_at",
-        component: onFormatDate,
         sortable: true,
       },
       {

@@ -62,13 +62,15 @@ const Admin = () => {
     setIsActive(
       location.pathname.substring(location.pathname.lastIndexOf("/") + 1)
     );
-    pusherChannel.bind("App\\Events\\PemesananEvent", function (data) {
-      orderCounts();
-      TimerAlert().Toast.fire({
-        icon: "info",
-        title: "New Order",
+    if(auth?.user?.is_admin){
+      pusherChannel.bind("App\\Events\\PemesananEvent", function () {
+        orderCounts();
+        TimerAlert().Toast.fire({
+          icon: "info",
+          title: "New Order",
+        });
       });
-    });
+    }
   }, [isMobile.matches, location.pathname]);
 
   return (
