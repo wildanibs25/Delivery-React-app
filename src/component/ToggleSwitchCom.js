@@ -11,8 +11,8 @@ const ToggleSwitchCom = ({ record, fetchDataMenu }) => {
   const cookies = new Cookies();
 
   const onUpdateStatus = async (record) => {
-
-    const status = record.status_menu === "Tersedia" ? "Tidak" : "Tersedia";
+    const status =
+      record.status_menu === "Available" ? "Not Available" : "Available";
 
     Axios.defaults.headers.common["Authorization"] = `Bearer ${cookies.get(
       "ACCESS_TOKEN"
@@ -34,11 +34,10 @@ const ToggleSwitchCom = ({ record, fetchDataMenu }) => {
         SegmentErrorCom(error.response.data.message);
         auth.logout();
       });
-
   };
-  
+
   useEffect(() => {
-    setChecked(record.status_menu === "Tersedia" ? true : false);
+    setChecked(record.status_menu === "Available" ? true : false);
   }, [record.status_menu]);
 
   return (

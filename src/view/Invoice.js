@@ -10,12 +10,11 @@ import { useAuth } from "../service/auth";
 import Axios from "../service/axios";
 import logoAyam from "../storage/logoAyam.png";
 import nama from "../storage/nama";
-import baseURL from "../service/baseURL";
+import invoiceIcon from "../storage/invoice.png";
 
 const Invoice = () => {
   const auth = useAuth();
   const params = useParams();
-  const url = baseURL();
   const [isLoading, setIsLoading] = useState(0);
   const [invoice, setInvoice] = useState([]);
   const navigate = useNavigate();
@@ -39,10 +38,7 @@ const Invoice = () => {
   const onImage = (record, column) => {
     return (
       <div className="flex items-center">
-        <Avatar
-          className="object-cover"
-          img={url+resolveRecord(record, column.image)}
-        />
+        <Avatar className="object-cover" img={invoiceIcon} />
         <span className="ml-2">{resolveRecord(record, column.field)}</span>
       </div>
     );
@@ -54,7 +50,6 @@ const Invoice = () => {
           columns: [
             {
               header: "Name",
-              image: "menu.gambar_menu",
               field: "menu.nama_menu",
               component: onImage,
               sortable: true,
@@ -216,7 +211,7 @@ const Invoice = () => {
           {invoice.status_pesanan === "Precessed" &&
             "Your order is being processed"}
           {invoice.status_pesanan === "Delivered" && (
-            <>
+            <div>
               <span>your order is being delivered</span>
               <br />
               <span>
@@ -228,7 +223,7 @@ const Invoice = () => {
                   click here to confirm!
                 </span>
               </span>
-            </>
+            </div>
           )}
         </h1>
         <StepCom status={invoice.status_pesanan} />

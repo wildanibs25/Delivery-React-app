@@ -254,7 +254,7 @@ const TableCom = ({ model, isLoading, totalTable, keyword }) => {
                   );
                 })}
                 {totalTable && (
-                  <>
+                  <Fragment>
                     <tr className="bg-white">
                       {(totalTable ? totalTable.matches : true) && (
                         <td colSpan={model.columns.length - 1}></td>
@@ -272,7 +272,7 @@ const TableCom = ({ model, isLoading, totalTable, keyword }) => {
                       <td className="py-4 px-6 object-cover border-b dark:bg-gray-600 dark:border-gray-700">
                         Delivery Cost
                       </td>
-                      <td className="py-4 px-6 object-cover border-b dark:bg-gray-600 dark:border-gray-700">
+                      <td className="py-4 px-6 object-cover border-b dark:bg-gray-600 dark:border-gray-700 pl-7">
                         {FormatRupiah(totalTable.deliveryCost)}
                       </td>
                     </tr>
@@ -288,7 +288,7 @@ const TableCom = ({ model, isLoading, totalTable, keyword }) => {
                         {FormatRupiah(totalTable.total_harga)}
                       </td>
                     </tr>
-                  </>
+                  </Fragment>
                 )}
               </Fragment>
             ) : (

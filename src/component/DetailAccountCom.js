@@ -113,7 +113,7 @@ const DetailAccount = ({ detail, setDetail, showForm, setShowForm }) => {
         });
 
         if (auth.user.nama === name) {
-          auth.login();
+          auth.getMe();
         }
 
         setDetail((detail) => ({

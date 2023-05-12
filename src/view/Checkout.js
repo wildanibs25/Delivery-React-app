@@ -218,7 +218,7 @@ const Checkout = () => {
                   />
                   <Label
                     htmlFor="address"
-                    value="NB : Hanya melayani jarak hingga 7 km"
+                    value="N.B. : We only serve up to a radius of 7 km."
                   />
                 </div>
               )}

@@ -175,8 +175,8 @@ const FormMenuCom = ({
                 }}
               >
                 <option value={""}>Selected Category</option>
-                <option value={"Makanan"}>Makanan</option>
-                <option value={"Minuman"}>Minuman</option>
+                <option value={"Food"}>Food</option>
+                <option value={"Drink"}>Drink</option>
               </Select>
               {validation.category && AlertCom().Danger(validation.category[0])}
             </div>

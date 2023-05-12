@@ -92,7 +92,7 @@ const SettingAccount = () => {
           title: "Data Updated!",
           html: "<br />",
         });
-        auth.login();
+        auth.getMe();
         setNewPassword("");
         setNewPasswordConfirm("");
         setOldPassword("");
@@ -196,7 +196,7 @@ const SettingAccount = () => {
                   style={{ width: "9rem", height: "9rem" }}
                   size="xl"
                   img={
-                    image !== "foto"
+                    image !== url + "foto"
                       ? image
                       : `https://ui-avatars.com/api/?name=${name}`
                   }

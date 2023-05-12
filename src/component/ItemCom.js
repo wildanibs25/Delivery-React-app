@@ -1,11 +1,12 @@
 import { Badge, Button } from "flowbite-react";
-import React from "react";
+import React, { useState } from "react";
 import { HiClock, HiShoppingCart } from "react-icons/hi";
 import baseURL from "../service/baseURL";
 import { FormatRupiah } from "./FormatRupiahCom";
 
 const Item = (props) => {
   const url = baseURL();
+  const [open, isOpen] = useState(false);
   const { menu, selectItem, matches } = props;
   const {
     kategori_menu,
@@ -21,7 +22,7 @@ const Item = (props) => {
       <div className="h-full border-2 border-gray-200 border-opacity-60 rounded-lg overflow-hidden">
         <img
           className="lg:h-48 md:h-36 w-full object-cover object-center"
-          src={url+gambar_menu}
+          src={url + gambar_menu}
           alt="blog"
         />
         <div className="p-6">
@@ -34,9 +35,23 @@ const Item = (props) => {
           <h1 className={`text-gray-900 mb-1 ${!matches && "hidden"}`}>
             {FormatRupiah(harga_menu)}
           </h1>
-          <p className="leading-relaxed text-sm mb-3">{deskripsi_menu}</p>
+          <p
+            className="leading-relaxed text-sm mb-3 cursor-pointer"
+            onClick={() => isOpen(!open)}
+          >
+            {deskripsi_menu.length <= 80 ? (
+              <span>{deskripsi_menu}</span>
+            ) : open ? (
+              <span>{deskripsi_menu}</span>
+            ) : (
+              <span>
+                {deskripsi_menu.substring(0, 80) + "..."}
+                <span className="text-blue-400"> More</span>
+              </span>
+            )}
+          </p>
           <div className="flex items-center">
-            {status_menu !== "Tersedia" ? (
+            {status_menu !== "Available" ? (
               <Badge className="px-3 my-2" color="indigo" icon={HiClock}>
                 Not Available
               </Badge>

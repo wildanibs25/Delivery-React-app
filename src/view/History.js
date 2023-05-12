@@ -57,9 +57,9 @@ const History = () => {
     }
   };
 
-  const onDetail = (nota) =>{
+  const onDetail = (nota) => {
     navigate(`/invoice/${nota}`);
-  }
+  };
 
   useEffect(() => {
     if (auth.user) {
@@ -68,7 +68,7 @@ const History = () => {
       });
     }
     fetchDataHistory();
-    // console.log("test", auth.user.foto);
+    // console.log("test", auth.user);
   }, []);
 
   return (
@@ -96,7 +96,12 @@ const History = () => {
                   <div className="flex items-center space-x-2">
                     <div>
                       <Avatar
-                        img={url + auth.user.foto}
+                        img={
+                          auth.user.foto !== "foto"
+                            ? url + auth.user.foto
+                            : `https://ui-avatars.com/api/?name=${auth.user.nama}`
+                        }
+                        size="lg"
                         className="object-cover h-20 w-20"
                       />
                     </div>

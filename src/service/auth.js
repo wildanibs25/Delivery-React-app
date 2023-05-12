@@ -3,6 +3,7 @@ import React, { createContext, useContext, useEffect, useState } from "react";
 import Cookies from "universal-cookie";
 import Axios from "../service/axios";
 import SegmentErrorCom from "../component/SegmentErrorCom";
+import { useNavigate } from "react-router-dom";
 
 const AuthContext = createContext(null);
 
@@ -11,7 +12,10 @@ const AuthProvider = ({ children }) => {
 
   const cookies = new Cookies();
 
-  const login = async () => {
+  const navigate = useNavigate();
+
+
+  const getMe = async () => {
     const token = cookies.get("ACCESS_TOKEN");
     if (token) {
       Axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
@@ -34,20 +38,22 @@ const AuthProvider = ({ children }) => {
         cookies.remove("ACCESS_TOKEN", { path: "/" });
         cookies.remove("lastPath", { path: "/" });
         setUser(null);
+        navigate("/login");
       })
       .catch(() => {
         cookies.remove("ACCESS_TOKEN", { path: "/" });
         cookies.remove("lastPath", { path: "/" });
         setUser(null);
+        navigate("/login");
       });
   };
 
   useEffect(() => {
-    login();
+    getMe();
   }, []);
 
   return (
-    <AuthContext.Provider value={{ user, login, logout }}>
+    <AuthContext.Provider value={{ user, getMe, logout }}>
       {children}
     </AuthContext.Provider>
   );

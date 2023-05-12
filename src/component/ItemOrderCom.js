@@ -29,7 +29,7 @@ const ItemOrder = (props) => {
       <tr className="bg-white dark:bg-gray-800">
         <th
           scope="row"
-          className="font-medium text-gray-900 whitespace-nowrap dark:text-white"
+          className="font-medium text-gray-900 whitespace-nowrap dark:text-white py-1.5"
         >
           <Avatar img={url+gambar_menu} />
           {nama_menu}

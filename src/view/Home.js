@@ -1,7 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from "react";
 import Axios from "../service/axios";
-import { useNavigate } from "react-router-dom";
 import Cookies from "universal-cookie";
 import { useAuth } from "../service/auth";
 import { Card } from "flowbite-react";
@@ -26,8 +25,6 @@ const Home = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   const cookies = new Cookies();
-
-  const navigate = useNavigate();
 
   const fetchDataMenu = async () => {
     setIsLoading(true);
@@ -67,7 +64,6 @@ const Home = () => {
     await Axios.post("add-item", formData).catch((error) => {
       SegmentErrorCom(error.response.data.message);
       auth.logout();
-      navigate("/login");
     });
   };
 

@@ -8,7 +8,7 @@ const SegmentErrorCom = (val) => {
     },
     buttonsStyling: false,
     icon: "error",
-    title: "ERROR",
+    title: "TOKEN INVALID",
     text: val + "!",
   });
 };

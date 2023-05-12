@@ -39,9 +39,9 @@ const Login = () => {
         });
         cookies.set("ACCESS_TOKEN", response.data.token, {
           path: "/",
-          maxAge: 3600 * 4,
+          maxAge: 3600 * 8,
         });
-        auth.login();
+        auth.getMe();
       })
       .catch((error) => {
         TimerAlert().Toast.fire({

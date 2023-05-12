@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 import Chart from "react-apexcharts";
 
-const DonutChartCom = ({items}) => {
+const DonutChartCom = ({ items }) => {
   const [options, setOptions] = useState({});
 
   const [series, setSeries] = useState([]);

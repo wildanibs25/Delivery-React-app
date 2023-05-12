@@ -33,7 +33,6 @@ const ModalCom = ({ counter }) => {
       .catch((error) => {
         SegmentErrorCom(error.response.data.message);
         auth.logout();
-        navigate("/login");
       });
   };
 
@@ -49,7 +48,6 @@ const ModalCom = ({ counter }) => {
       await Axios.post("update-item", formData).catch((error) => {
         SegmentErrorCom(error.response.data.message);
         auth.logout();
-        navigate("/login");
       });
     } else {
       if (countItem === 1) {
@@ -59,7 +57,6 @@ const ModalCom = ({ counter }) => {
       await Axios.post("delete-item", formData).catch((error) => {
         SegmentErrorCom(error.response.data.message);
         auth.logout();
-        navigate("/login");
       });
     }
   };
