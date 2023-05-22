@@ -2,11 +2,11 @@ import React from "react";
 
 const Terms = () => {
   return (
-    <div className="2xl:container 2xl:mx-auto md:py-28 md:px-28 py-9 px-4">
+    <div className="2xl:container 2xl:mx-auto md:py-24 md:px-28 py-9 px-4">
       <div className="flex flex-col md:flex-row justify-between gap-8">
-        <div className="w-full md:w-4/12 flex flex-col justify-center">
+        <div className="w-full md:w-12/12 flex flex-col justify-center">
           <div className="flex justify-center mb-8">
-            <h2 className="text-3xl font-bold my-16 px-6">
+            <h2 className="text-3xl font-bold my-4 px-6 text-center">
               Terms and Conditions
             </h2>
           </div>

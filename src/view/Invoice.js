@@ -37,9 +37,13 @@ const Invoice = () => {
 
   const onImage = (record, column) => {
     return (
-      <div className="flex items-center">
-        <Avatar className="object-cover" img={invoiceIcon} />
-        <span className="ml-2">{resolveRecord(record, column.field)}</span>
+      <div className="grid grid-cols-8 items-center">
+        <div className="md:col-span-1 col-span-2">
+          <Avatar className="object-cover" img={invoiceIcon} />
+        </div>
+        <div className="md:col-span-7 col-span-6">
+          <span className="ml-2">{resolveRecord(record, column.field)}</span>
+        </div>
       </div>
     );
   };

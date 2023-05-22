@@ -6,9 +6,9 @@ const Contact = () => {
       <div className="flex justify-center">
         <h2 className="text-3xl font-bold my-16 px-6">Contact us</h2>
       </div>
-      <div className="md:flex px-auto mb-16 mt-16">
+      <div className="md:flex px-auto mb-16 md:mt-16 mt-0">
         <div className="mx-auto">
-          <div className="flex items-start mb-8">
+          <div className="flex items-start mb-8 p-5 w-full bg-white border border-gray-200 rounded-lg shadow-md">
             <div className="shrink-0">
               <div className="p-4 bg-blue-600 rounded-md shadow-md w-14 h-14 flex items-center justify-center">
                 <svg
@@ -35,7 +35,7 @@ const Contact = () => {
             </div>
           </div>
 
-          <div className="flex items-start mb-8">
+          <div className="flex items-start mb-8 p-5 w-full bg-white border border-gray-200 rounded-lg shadow-md">
             <div className="shrink-0">
               <div className="p-4 bg-blue-600 rounded-md shadow-md w-14 h-14 flex items-center justify-center">
                 <svg
@@ -64,7 +64,7 @@ const Contact = () => {
         </div>
 
         <div className="mx-auto">
-          <div className="flex align-start mb-8">
+          <div className="flex align-start mb-8 p-5 w-full bg-white border border-gray-200 rounded-lg shadow-md">
             <div className="shrink-0">
               <div className="p-4 bg-blue-600 rounded-md shadow-md w-14 h-14 flex items-center justify-center">
                 <svg
@@ -91,7 +91,7 @@ const Contact = () => {
             </div>
           </div>
 
-          <div className="flex align-start mb-8">
+          <div className="flex align-start mb-8 p-5 w-full bg-white border border-gray-200 rounded-lg shadow-md">
             <div className="shrink-0">
               <div className="p-4 bg-blue-600 rounded-md shadow-md w-14 h-14 flex items-center justify-center">
                 <svg

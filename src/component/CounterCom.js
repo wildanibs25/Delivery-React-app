@@ -12,22 +12,22 @@ const Counter = (props) => {
   const [price, setPrice] = useState(0);
 
   const addItemQty = () => {
-    setCountItem(countItem + 1);
-    setCountPrice(countPrice + price);
-    setQty(qty + 1);
-    changeEditItem(qty + 1);
+    setCountItem((+countItem) + 1);
+    setCountPrice((+countPrice) + (+price));
+    setQty((+qty) + 1);
+    changeEditItem((+qty) + 1);
   };
 
   const minItemQty = () => {
-    setCountItem(countItem - 1);
-    setCountPrice(countPrice - price);
-    setQty(qty > 0 ? qty - 1 : qty);
-    changeEditItem(qty > 0 ? qty - 1 : qty);
+    setCountItem((+countItem) - 1);
+    setCountPrice((+countPrice) - (+price));
+    setQty((+qty) > 0 ? (+qty) - 1 : (+qty));
+    changeEditItem((+qty) > 0 ? (+qty) - 1 : (+qty));
   };
 
   useEffect(() => {
-    setQty(defaultValue);
-    setPrice(defaultPrice);
+    setQty(+defaultValue);
+    setPrice(+defaultPrice);
   }, [defaultValue, defaultPrice]);
 
   return (

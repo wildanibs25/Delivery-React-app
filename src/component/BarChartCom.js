@@ -29,7 +29,7 @@ const BarChartCom = ({ orders }) => {
           month === getMonth(new Date(order.created_at)) &&
           getYear(new Date(order.created_at)) === getYear(new Date())
         ) {
-          perMonth = perMonth + order.total_harga;
+          perMonth = (+perMonth) + (+order.total_harga);
         }
       });
 
@@ -128,6 +128,7 @@ const BarChartCom = ({ orders }) => {
         data: dataSeries,
       },
     ]);
+
   }, [orders]);
 
   return <Chart options={options} series={series} type="bar" width="500" />;

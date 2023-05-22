@@ -46,12 +46,12 @@ const SettingAccount = () => {
   const location = useLocation();
 
   const fetchDataUser = () => {
-    setImage(url+auth.user.foto);
-    setName(auth.user.nama);
-    setEmail(auth.user.email);
-    setHp(auth.user.no_hp);
-    setDate(auth.user.tgl_lahir);
-    setGender(auth.user.jk);
+    setImage(url+auth.user?.foto || '');
+    setName(auth.user?.nama || "");
+    setEmail(auth.user?.email || '');
+    setHp(auth.user?.no_hp || "");
+    setDate(auth.user?.tgl_lahir || '');
+    setGender(auth.user?.jk || "");
   };
 
   const editAccount = async (e) => {
@@ -181,7 +181,7 @@ const SettingAccount = () => {
       });
     }
     fetchDataUser();
-  }, []);
+  }, [auth.user]);
 
   return (
     <Fragment>
@@ -470,7 +470,7 @@ const SettingAccount = () => {
             </Button>
             <Button
               gradientDuoTone="pinkToOrange"
-              className="w-36 mr-4 float-right transition ease-in-out delay-150 bg-blue-500 hover:-translate-y-1 hover:scale-110 duration-300"
+              className="w-36 lg:mr-4 float-right transition ease-in-out delay-150 bg-blue-500 hover:-translate-y-1 hover:scale-110 duration-300"
               type="button"
               onClick={onDelete}
             >

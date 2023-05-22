@@ -27,8 +27,8 @@ const About = () => {
           </div>
         </div>
 
-        <div className="justify-between gap-8 pt-12 mb-20">
-          <div className="w-full md:w-5/12 flex flex-col justify-center">
+        <div className="justify-between gap-8 pt-12 mb-20 w-100">
+          <div className="w-full md:w-12/12 flex flex-col justify-center">
             <h1 className="text-3xl md:text-4xl font-bold leading-9 text-gray-800 pb-4">
               Our Story
             </h1>

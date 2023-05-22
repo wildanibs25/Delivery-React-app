@@ -3,7 +3,7 @@ import React from "react";
 
 const Team = () => {
   return (
-    <div className="w-1/3 items-center justify-center mx-auto mt-8 mb-8">
+    <div className="md:w-1/3 items-center justify-center mx-auto mt-8 mb-8">
       <Card>
         <div className="mb-4 flex items-center justify-between">
           <h5 className="text-xl font-bold leading-none text-gray-900 dark:text-white">

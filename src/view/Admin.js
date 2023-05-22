@@ -220,14 +220,14 @@ const Admin = () => {
                 <Avatar
                   className="h-10 w-10 sm:h-10"
                   img={
-                    auth.user.foto !== "foto"
+                    auth.user?.foto !== "foto"
                       ? url + auth.user.foto
-                      : `https://ui-avatars.com/api/?name=${auth.user.nama}`
+                      : `https://ui-avatars.com/api/?name=${auth.user?.nama || ''}`
                   }
                   rounded={true}
                 />
                 <span className={`${!open && "hidden"} origin-left flex`}>
-                  {auth.user.nama}
+                  {auth.user?.nama || ''}
                   <span className="my-1 ml-7">
                     {openSubMenu ? (
                       <FaChevronCircleDown />

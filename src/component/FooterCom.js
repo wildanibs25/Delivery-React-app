@@ -8,8 +8,8 @@ const FooterCom = () => {
   return (
     <section className="bg-white">
       <div className="max-w-screen-xl px-4 py-4 mx-auto space-y-8 overflow-hidden sm:px-6 lg:px-4">
-        <nav className="flex flex-wrap justify-center -mx-5 -my-2">
-          <div className="px-5 py-2">
+        <nav className="flex justify-center items-center text-center -mx-5 -my-2">
+          <div className="px-3 py-2">
             <Link
               to="/information/about"
               className="text-base leading-6 text-gray-500 hover:text-gray-900"
@@ -17,7 +17,7 @@ const FooterCom = () => {
               About
             </Link>
           </div>
-          <div className="px-5 py-2">
+          <div className="px-3 py-2">
             <Link
               to="/information/team"
               className="text-base leading-6 text-gray-500 hover:text-gray-900"
@@ -25,7 +25,7 @@ const FooterCom = () => {
               Team
             </Link>
           </div>
-          <div className="px-5 py-2">
+          <div className="px-3 py-2">
             <Link
               to="/information/contact"
               className="text-base leading-6 text-gray-500 hover:text-gray-900"
@@ -33,7 +33,7 @@ const FooterCom = () => {
               Contact
             </Link>
           </div>
-          <div className="px-5 py-2">
+          <div className="px-3 py-2">
             <Link
               to="/information/terms"
               className="text-base leading-6 text-gray-500 hover:text-gray-900"

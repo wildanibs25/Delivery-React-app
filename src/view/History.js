@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { Avatar, Badge, Card, Label } from "flowbite-react";
+import { Badge, Card, Label } from "flowbite-react";
 import React, { Fragment, useEffect, useState } from "react";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { BreadcrumbCom, FormatDate, FormatRupiah } from "../component";
@@ -8,12 +8,10 @@ import logoAyam from "../storage/logoAyam.png";
 import Axios from "../service/axios";
 import Cookies from "universal-cookie";
 import { useAuth } from "../service/auth";
-import baseURL from "../service/baseURL";
 
 const History = () => {
   const [data, setData] = useState([]);
   const auth = useAuth();
-  const url = baseURL();
   const cookies = new Cookies();
   const location = useLocation();
   const navigate = useNavigate();
@@ -82,50 +80,37 @@ const History = () => {
           <img className="w-20 h-20 mr-2" src={logoAyam} alt={"Flowbite"} />
           {nama()}
         </NavLink>
-        <Card className="md:mx-36 md:mb-36">
+        <Card className="md:mx-36 -mx-6 md:mb-36">
           <h1 className="text-2xl mb-5">History Your Order</h1>
           {data.map((item) => {
             return (
               <div
                 id={`address-${item.nota}`}
-                className="flex w-full items-center mb-6 p-6 bg-white border border-gray-200 rounded-lg shadow-md cursor-pointer"
+                className="md:flex w-full items-center mb-6 p-6 bg-white border border-gray-200 rounded-lg shadow-md cursor-pointer"
                 key={item.nota}
                 onClick={() => onDetail(item.nota)}
               >
                 <div className="items-center w-full">
-                  <div className="flex items-center space-x-2">
-                    <div>
-                      <Avatar
-                        img={
-                          auth.user.foto !== "foto"
-                            ? url + auth.user.foto
-                            : `https://ui-avatars.com/api/?name=${auth.user.nama}`
-                        }
-                        size="lg"
-                        className="object-cover h-20 w-20"
-                      />
-                    </div>
-                    <div>
-                      <Label
-                        htmlFor="Address"
-                        className="block font-medium text-gray-900 dark:text-white cursor-pointer"
-                      >
-                        <strong className="text-xl">{item.nota}</strong>
-                      </Label>
-                      <span className="mr-auto text-sm">
-                        {FormatDate(item.created_at)}
-                      </span>
-                    </div>
+                  <div className="items-center space-x-2">
+                    <Label
+                      htmlFor="Address"
+                      className="block font-medium text-gray-900 dark:text-white cursor-pointer"
+                    >
+                      <strong className="md:text-xl text-lg">
+                        {item.nota}
+                      </strong>
+                    </Label>
+                    <span className="mr-auto text-sm">
+                      {FormatDate(item.created_at)}
+                    </span>
                   </div>
                 </div>
-                {/* {action && ( */}
-                <div className="flex flex-wrap items-center justify-center">
+                <div className="flex flex-wrap items-center justify-center md:mt-0 mt-5">
                   <h1 className="mb-2 text-xl">
                     {FormatRupiah(item.total_harga)}
                   </h1>
-                  {onBadge(item.status_pesanan)}
+                  <span className="md:mx-auto ml-auto">{onBadge(item.status_pesanan)}</span>
                 </div>
-                {/* )} */}
               </div>
             );
           })}
