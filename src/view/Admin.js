@@ -36,6 +36,7 @@ const Admin = () => {
   const isMobile = window.matchMedia("only screen and (max-width: 830px)");
   const [count, setCount] = useState(0);
   const cookies = new Cookies();
+  const [orderUpdate, setOrderUpdate] = useState(false);
 
   const location = useLocation();
 
@@ -62,13 +63,22 @@ const Admin = () => {
     setIsActive(
       location.pathname.substring(location.pathname.lastIndexOf("/") + 1)
     );
-    if(auth?.user?.is_admin){
-      pusherChannel.bind("App\\Events\\PemesananEvent", function () {
+    if (auth.user?.is_admin) {
+      pusherChannel.bind("App\\Events\\PemesananEvent", function (response) {
         orderCounts();
-        TimerAlert().Toast.fire({
-          icon: "info",
-          title: "New Order",
-        });
+        setOrderUpdate(!orderUpdate);
+        if (response.data.success) {
+          TimerAlert().Toast.fire({
+            icon: "info",
+            title: "New Order",
+          });
+        }
+        if (response.data.orderUpdate) {
+          TimerAlert().Toast.fire({
+            icon: "success",
+            title: "Order Finished",
+          });
+        }
       });
     }
   }, [isMobile.matches, location.pathname]);
@@ -176,7 +186,10 @@ const Admin = () => {
                   open ? "-right-[1.35rem]" : "-right-[2.35rem] -translate-x-1"
                 } -top-[1.22rem] inset-y-0 h-[5.05rem] w-16`}
               />{" "}
-              <Badge className={`${!open && "hidden"}`} color={"info"}>
+              <Badge
+                className={`${!open && "hidden"} ${count === 0 && "hidden"}`}
+                color={"info"}
+              >
                 {count}
               </Badge>
             </NavLink>
@@ -222,12 +235,14 @@ const Admin = () => {
                   img={
                     auth.user?.foto !== "foto"
                       ? url + auth.user.foto
-                      : `https://ui-avatars.com/api/?name=${auth.user?.nama || ''}`
+                      : `https://ui-avatars.com/api/?name=${
+                          auth.user?.nama || ""
+                        }`
                   }
                   rounded={true}
                 />
                 <span className={`${!open && "hidden"} origin-left flex`}>
-                  {auth.user?.nama || ''}
+                  {auth.user?.nama || ""}
                   <span className="my-1 ml-7">
                     {openSubMenu ? (
                       <FaChevronCircleDown />
@@ -280,7 +295,7 @@ const Admin = () => {
          ${isMobile.matches && open && "hidden"}`}
       >
         <Card>
-          <Outlet />
+          <Outlet context={[orderUpdate, setOrderUpdate]} />
           <FooterCom />
         </Card>
       </div>

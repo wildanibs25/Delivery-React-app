@@ -11,6 +11,7 @@ import { useAuth } from "../service/auth";
 
 const History = () => {
   const [data, setData] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
   const auth = useAuth();
   const cookies = new Cookies();
   const location = useLocation();
@@ -23,6 +24,7 @@ const History = () => {
     await Axios.get("pesanan")
       .then((response) => {
         setData(response.data.data);
+        setIsLoading(!isLoading);
       })
       .catch((error) => {});
   };
@@ -82,38 +84,46 @@ const History = () => {
         </NavLink>
         <Card className="md:mx-36 -mx-6 md:mb-36">
           <h1 className="text-2xl mb-5">History Your Order</h1>
-          {data.map((item) => {
-            return (
-              <div
-                id={`address-${item.nota}`}
-                className="md:flex w-full items-center mb-6 p-6 bg-white border border-gray-200 rounded-lg shadow-md cursor-pointer"
-                key={item.nota}
-                onClick={() => onDetail(item.nota)}
-              >
-                <div className="items-center w-full">
-                  <div className="items-center space-x-2">
-                    <Label
-                      htmlFor="Address"
-                      className="block font-medium text-gray-900 dark:text-white cursor-pointer"
-                    >
-                      <strong className="md:text-xl text-lg">
-                        {item.nota}
-                      </strong>
-                    </Label>
-                    <span className="mr-auto text-sm">
-                      {FormatDate(item.created_at)}
+          {isLoading ? (
+            data.map((item) => {
+              return (
+                <div
+                  id={`address-${item.nota}`}
+                  className="md:flex w-full items-center mb-6 p-6 bg-white border border-gray-200 rounded-lg shadow-md cursor-pointer"
+                  key={item.nota}
+                  onClick={() => onDetail(item.nota)}
+                >
+                  <div className="items-center w-full">
+                    <div className="items-center space-x-2">
+                      <Label
+                        htmlFor="Address"
+                        className="block font-medium text-gray-900 dark:text-white cursor-pointer"
+                      >
+                        <strong className="md:text-xl text-lg">
+                          {item.nota}
+                        </strong>
+                      </Label>
+                      <span className="mr-auto text-sm">
+                        {FormatDate(item.created_at)}
+                      </span>
+                    </div>
+                  </div>
+                  <div className="flex flex-wrap items-center justify-center md:mt-0 mt-5">
+                    <h1 className="mb-2 text-xl">
+                      {FormatRupiah(item.total_harga)}
+                    </h1>
+                    <span className="md:mx-auto ml-auto">
+                      {onBadge(item.status_pesanan)}
                     </span>
                   </div>
                 </div>
-                <div className="flex flex-wrap items-center justify-center md:mt-0 mt-5">
-                  <h1 className="mb-2 text-xl">
-                    {FormatRupiah(item.total_harga)}
-                  </h1>
-                  <span className="md:mx-auto ml-auto">{onBadge(item.status_pesanan)}</span>
-                </div>
-              </div>
-            );
-          })}
+              );
+            })
+          ) : (
+            <div className="grid place-items-center h-full w-full my-10">
+              <div className="spinner"></div>
+            </div>
+          )}
         </Card>
       </div>
     </Fragment>

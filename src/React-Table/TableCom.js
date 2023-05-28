@@ -272,7 +272,7 @@ const TableCom = ({ model, isLoading, totalTable, keyword }) => {
                       <td className="py-4 px-6 object-cover border-b dark:bg-gray-600 dark:border-gray-700">
                         Delivery Cost
                       </td>
-                      <td className="py-4 px-6 object-cover border-b dark:bg-gray-600 dark:border-gray-700 pl-7">
+                      <td className="py-4 px-6 object-cover border-b dark:bg-gray-600 dark:border-gray-700 -pr-7">
                         {FormatRupiah(totalTable.deliveryCost)}
                       </td>
                     </tr>

@@ -11,6 +11,7 @@ import Axios from "../service/axios";
 import logoAyam from "../storage/logoAyam.png";
 import nama from "../storage/nama";
 import invoiceIcon from "../storage/invoice.png";
+import pusherChannel from "../service/pusher";
 
 const Invoice = () => {
   const auth = useAuth();
@@ -97,36 +98,38 @@ const Invoice = () => {
   );
 
   const fetchData = async () => {
-    await Axios.get(`pesanan/${params.id}`).then((response) => {
-      modelDataInvoice.setRecords(response.data.data.item);
-      let data = response.data.data;
-      data.deliveryCost = 5000;
-      data.subTotal = data.total_harga - data.deliveryCost;
-      data.matches = matches;
-      setInvoice(data);
-      setIsLoading(isLoading + 1);
-    }).catch((error) =>{
-      if (error.response.status === 412) {
-        SegmentErrorCom(error.response.data.message);
-        auth.logout();
-      } else {
-        Swal.fire({
-          title: error.response.data.error,
-          text: "Click button below to refresh page",
-          icon: "error",
-          confirmButtonText: "Refresh",
-          customClass: {
-            confirmButton:
-              "text-white bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2",
-          },
-          buttonsStyling: false,
-        }).then((result) => {
-          if (result.isConfirmed) {
-            window.location.reload();
-          }
-        });
-      }
-    });
+    await Axios.get(`pesanan/${params.id}`)
+      .then((response) => {
+        modelDataInvoice.setRecords(response.data.data.item);
+        let data = response.data.data;
+        data.deliveryCost = 5000;
+        data.subTotal = data.total_harga - data.deliveryCost;
+        data.matches = matches;
+        setInvoice(data);
+        setIsLoading(isLoading + 1);
+      })
+      .catch((error) => {
+        if (error.response.status === 412) {
+          SegmentErrorCom(error.response.data.message);
+          auth.logout();
+        } else {
+          Swal.fire({
+            title: error.response.data.error,
+            text: "Click button below to refresh page",
+            icon: "error",
+            confirmButtonText: "Refresh",
+            customClass: {
+              confirmButton:
+                "text-white bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2",
+            },
+            buttonsStyling: false,
+          }).then((result) => {
+            if (result.isConfirmed) {
+              window.location.reload();
+            }
+          });
+        }
+      });
   };
 
   const onEditStatus = async () => {
@@ -183,6 +186,12 @@ const Invoice = () => {
     window
       .matchMedia("(min-width: 768px)")
       .addEventListener("change", (e) => setMatches(e.matches));
+
+    pusherChannel.bind("App\\Events\\PemesananEvent", function (response) {
+      if (response.data.orderUpdateAdmin) {
+        fetchData();
+      }
+    });
   }, [matches]);
 
   return (

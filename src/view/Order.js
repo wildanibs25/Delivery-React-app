@@ -2,7 +2,7 @@
 
 import { Badge } from "flowbite-react";
 import React, { Fragment, useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useOutletContext } from "react-router-dom";
 import Swal from "sweetalert2";
 import Cookies from "universal-cookie";
 import DetailOrder from "../component/DetailOrderCom";
@@ -16,6 +16,8 @@ const Order = () => {
   const [isLoading, setIsLoading] = useState(0);
   const [showForm, setShowForm] = useState(false);
   const [detail, setDetail] = useState([]);
+  const [orderUpdate, setOrderUpdate] = useOutletContext();
+
   const cookies = new Cookies();
 
   const location = useLocation();
@@ -129,8 +131,13 @@ const Order = () => {
       });
     }
 
+    if (orderUpdate) {
+      fetchDataOrder();
+      setOrderUpdate(!orderUpdate);
+    }
+
     fetchDataOrder();
-  }, [detail.status_pesanan]);
+  }, [detail.status_pesanan, orderUpdate]);
 
   return (
     <Fragment>
