@@ -20,6 +20,17 @@ const ItemOrder = (props) => {
     setItemQty(qty);
   };
 
+  const breakPoint = (nama) => {
+    var arrayNama = nama.split(" ");
+    if (arrayNama.length > 2) {
+      arrayNama.splice(2, 0, "<br />");
+      arrayNama = arrayNama.join(" ");
+      return arrayNama;
+    } else {
+      return nama;
+    }
+  };
+
   useEffect(() => {
     setItemQty(qty);
   }, [qty]);
@@ -31,8 +42,10 @@ const ItemOrder = (props) => {
           scope="row"
           className="font-medium text-gray-900 whitespace-nowrap dark:text-white py-1.5"
         >
-          <Avatar img={url+gambar_menu} />
-          {nama_menu}
+          <Avatar img={url + gambar_menu} />
+          <span
+            dangerouslySetInnerHTML={{ __html: `${breakPoint(nama_menu)}` }}
+          ></span>
         </th>
         <td>
           <Counter

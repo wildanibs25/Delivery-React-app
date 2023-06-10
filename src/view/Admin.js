@@ -41,7 +41,7 @@ const Admin = () => {
   const location = useLocation();
 
   const activeClassName =
-    "group flex rounded-l-full relative p-2 cursor-pointer dark:text-white bg-white text-sky-500 dark:bg-sky-500 text-white text-base items-center gap-x-4 mt-2";
+    "group flex rounded-l-full relative p-2 cursor-pointer dark:text-white bg-white text-sky-500 dark:bg-sky-500 text-base items-center gap-x-4 mt-2";
   const noActiveClassName =
     "group flex rounded-l-full relative p-2 cursor-pointer dark:text-white hover:bg-white hover:text-sky-500 dark:hover:bg-sky-500 text-white text-base items-center gap-x-4 mt-2";
 
@@ -68,13 +68,13 @@ const Admin = () => {
         orderCounts();
         setOrderUpdate(!orderUpdate);
         if (response.data.success) {
-          TimerAlert().Toast.fire({
+          TimerAlert().ToastAudio.fire({
             icon: "info",
             title: "New Order",
           });
         }
         if (response.data.orderUpdate) {
-          TimerAlert().Toast.fire({
+          TimerAlert().ToastAudio.fire({
             icon: "success",
             title: "Order Finished",
           });

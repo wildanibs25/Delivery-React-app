@@ -19,7 +19,7 @@ const CarouselCom = () => {
       });
     } else {
       window.scrollTo({
-        top: 900,
+        top: 700,
         behavior: "smooth",
       });
     }
@@ -33,7 +33,7 @@ const CarouselCom = () => {
 
   return (
     <section className="text-gray-600 body-font bg-transparent">
-      <div className="container mx-auto flex px-5 pt-2 pb-16 md:flex-row flex-col items-center">
+      <div className="container mx-auto flex md:px-5 pt-2 md:pb-16 md:flex-row flex-col items-center">
         <div className="md:order-2 lg:max-w-lg lg:w-full md:w-1/2 w-5/6 mb-10 md:mb-0 h-56 xl:h-96">
           <Carousel>
             <img className="object-cover" src={ayam} alt="..." />

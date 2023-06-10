@@ -79,7 +79,7 @@ const Register = () => {
   // ;
   return (
     <Card>
-      <section className="bg-gray-50 dark:bg-gray-900">
+      <section className="bg-gray-50 dark:bg-gray-900 md:m-0 -m-6">
         <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto lg:py-0 my-8">
           <NavLink
             to="/"
@@ -270,8 +270,15 @@ const Register = () => {
                         : delete validation.password;
                     }}
                   />
-                  {validation.password &&
-                    AlertCom().Danger(validation.password[0])}
+                  {validation.password ? (
+                    AlertCom().Danger(validation.password[0])
+                  ) : (
+                    <Label
+                      htmlFor="password"
+                      className="text-xs"
+                      value="Password more 6 character"
+                    />
+                  )}
                 </div>
                 <div>
                   <div className="mb-2 block">

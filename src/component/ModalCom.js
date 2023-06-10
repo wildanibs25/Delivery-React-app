@@ -86,8 +86,8 @@ const ModalCom = ({ counter }) => {
         <Modal.Header>Cart</Modal.Header>
         <Modal.Body>
           {countItem > 0 ? (
-            <div className="overflow-x-auto relative">
-              <table className="w-full text-sm text-gray-500 dark:text-gray-400 text-center">
+            <div className="overflow-x-hidden relative">
+              <table className="w-full md:text-sm text-xs text-gray-500 dark:text-gray-400 text-center">
                 <thead className="text-xs text-gray-700 uppercase bg-white-100 dark:bg-gray-700 dark:text-gray-400">
                   <tr>
                     <th className="py-3 px-4 rounded-l-lg">Menu</th>

@@ -12,12 +12,14 @@ import logoAyam from "../storage/logoAyam.png";
 import nama from "../storage/nama";
 import invoiceIcon from "../storage/invoice.png";
 import pusherChannel from "../service/pusher";
+import notif from "../storage/notif-2.wav";
 
 const Invoice = () => {
   const auth = useAuth();
   const params = useParams();
   const [isLoading, setIsLoading] = useState(0);
   const [invoice, setInvoice] = useState([]);
+  const [audio] = useState(new Audio(notif));
   const navigate = useNavigate();
 
   const cookies = new Cookies();
@@ -188,8 +190,9 @@ const Invoice = () => {
       .addEventListener("change", (e) => setMatches(e.matches));
 
     pusherChannel.bind("App\\Events\\PemesananEvent", function (response) {
-      if (response.data.orderUpdateAdmin) {
+      if (+response.data.id_user === +auth.user?.id_user) {
         fetchData();
+        audio.play();
       }
     });
   }, [matches]);
@@ -209,7 +212,7 @@ const Invoice = () => {
         <img className="w-20 h-20 mr-2" src={logoAyam} alt={"Flowbite"} />
         {nama()}
       </NavLink>
-      <Card className="md:mx-36 md:mb-36 -mx-5 text-center">
+      <Card className="md:mx-36 md:mb-36 -mx-6 text-center">
         <h1 className="font-bold text-4xl -mb-3">INVOICE</h1>
         <h1 className="mb-6">{invoice.nota}</h1>
         <TableCom

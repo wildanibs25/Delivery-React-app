@@ -62,10 +62,7 @@ const DetailOrder = ({ detail, setDetail }) => {
     } else if (status === "Processed") {
       setStatus("Delivered");
       onUpdateStatus("Delivered");
-    } //  else if (status === "Delivered") {
-    //   setStatus("Finished");
-    //   onUpdateStatus("Finished");
-    // }
+    } 
   };
 
   const onUpdateStatus = async (status) => {

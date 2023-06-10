@@ -11,7 +11,7 @@ const BreadcrumbCom = ({ name }) => {
       <Breadcrumb>
         <Breadcrumb.Item
           className="cursor-pointer"
-          onClick={() => navigate(-1)}
+          onClick={() => navigate("/")}
           icon={HiHome}
         >
           Home

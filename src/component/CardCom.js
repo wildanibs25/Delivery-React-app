@@ -71,9 +71,9 @@ const CardCom = ({ menu, selectItem }) => {
           ))}
         </div>
         {isMobile.matches && (
-          <div className="mt-9 mx-auto">
+          <div className="mt-9 -mx-6">
             <Pagination
-              className="ml-auto"
+              className="mx-auto grid place-items-center"
               currentPage={state.currentPage}
               totalPages={state.sizePage}
               onPageChange={onPageChange}

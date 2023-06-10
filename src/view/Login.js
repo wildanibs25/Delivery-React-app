@@ -72,7 +72,7 @@ const Login = () => {
 
   return (
     <Card>
-      <section className="bg-gray-50 dark:bg-gray-900">
+      <section className="bg-gray-50 dark:bg-gray-900 md:m-0 -m-6">
         <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto lg:py-0 mb-28 mt-16">
           <NavLink
             to="/"

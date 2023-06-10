@@ -142,7 +142,7 @@ const TableCom = ({ model, isLoading, totalTable, keyword }) => {
   ]);
 
   return (
-    <Card>
+    <Card className="md:mx-0 -mx-6">
       {model.search && (
         <div className="relative">
           <TextInput

@@ -137,7 +137,7 @@ const Order = () => {
     }
 
     fetchDataOrder();
-  }, [detail.status_pesanan, orderUpdate]);
+  }, [detail.status_pesanan, orderUpdate, showForm]);
 
   return (
     <Fragment>

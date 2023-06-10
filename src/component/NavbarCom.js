@@ -30,14 +30,14 @@ const NavbarCom = () => {
       {auth.user ? (
         <div className="flex md:order-2">
           <Dropdown
-            className="mr-2 w-full"
+            className="mr-2 w-1/6"
             arrowIcon={false}
             inline={true}
             label={
               <Avatar
                 img={
                   auth.user.foto !== "foto"
-                    ? url+auth.user.foto
+                    ? url + auth.user.foto
                     : `https://ui-avatars.com/api/?name=${auth.user.nama}`
                 }
                 alt="User settings"

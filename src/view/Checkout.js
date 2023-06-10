@@ -7,7 +7,7 @@ import {
   Textarea,
   TextInput,
 } from "flowbite-react";
-import React, { Fragment, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import Cookies from "universal-cookie";
@@ -125,7 +125,7 @@ const Checkout = () => {
   }, []);
 
   return (
-    <Fragment>
+    <div className="md:mx-0 -mx-6">
       <BreadcrumbCom name={"Checkout"} />
       <div className="p-6 bg-white border border-gray-200 rounded-lg dark:bg-gray-800 dark:border-gray-700">
         <NavLink
@@ -135,7 +135,7 @@ const Checkout = () => {
           <img className="w-20 h-20 mr-2" src={logoAyam} alt={"Flowbite"} />
           {Nama()}
         </NavLink>
-        <Card className="md:mx-36 md:mb-36 -mx-5">
+        <Card className="md:mx-36 md:mb-36">
           <h1 className="text-2xl mb-5">Checkout Your Order</h1>
           <form onSubmit={onCheckout} className="flex flex-col gap-4">
             <div>
@@ -303,7 +303,7 @@ const Checkout = () => {
           </form>
         </Card>
       </div>
-    </Fragment>
+    </div>
   );
 };
 

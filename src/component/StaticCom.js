@@ -109,7 +109,7 @@ const StaticCom = () => {
               <div className="relative h-full w-full rounded-xl shadow-xl transition-all duration-500 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)]">
                 <div className="inset-0">
                   <div className="flex items-center p-4 bg-white border border-gray-200 rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700">
-                    {date.today > date.yesterday ? up : down}
+                    {+date.today > +date.yesterday ? up : down}
                     <div className="flex-grow flex flex-col ml-4">
                       <span className="text-xl font-bold">
                         {FormatRupiah(date.today)}
@@ -124,7 +124,7 @@ const StaticCom = () => {
                 <div className="absolute inset-0 h-full w-full rounded-xl bg-white [transform:rotateY(180deg)] [backface-visibility:hidden]">
                   <div className="inset-0">
                     <div className="flex items-center p-4 bg-white border border-gray-200 rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700">
-                      {date.today < date.yesterday ? up : down}
+                      {+date.today < +date.yesterday ? up : down}
                       <div className="flex-grow flex flex-col ml-4">
                         <span className="text-xl font-bold">
                           {FormatRupiah(date.yesterday)}
@@ -144,7 +144,7 @@ const StaticCom = () => {
               <div className="relative h-full w-full rounded-xl shadow-xl transition-all duration-500 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)]">
                 <div className="inset-0">
                   <div className="flex items-center p-4 bg-white border border-gray-200 rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700">
-                    {date.month > date.lastMonth ? up : down}
+                    {+date.month > +date.lastMonth ? up : down}
                     <div className="flex-grow flex flex-col ml-4">
                       <span className="text-xl font-bold">
                         {FormatRupiah(date.month)}
@@ -159,7 +159,7 @@ const StaticCom = () => {
                 <div className="absolute inset-0 h-full w-full rounded-xl bg-white [transform:rotateY(180deg)] [backface-visibility:hidden]">
                   <div className="inset-0">
                     <div className="flex items-center p-4 bg-white border border-gray-200 rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700">
-                      {date.month < date.lastMonth ? up : down}
+                      {+date.month < +date.lastMonth ? up : down}
                       <div className="flex-grow flex flex-col ml-4">
                         <span className="text-xl font-bold">
                           {FormatRupiah(date.lastMonth)}
@@ -179,7 +179,7 @@ const StaticCom = () => {
               <div className="relative h-full w-full rounded-xl shadow-xl transition-all duration-500 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)]">
                 <div className="inset-0">
                   <div className="flex items-center p-4 bg-white border border-gray-200 rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700">
-                    {date.year > date.lastYear ? up : down}
+                    {+date.year > +date.lastYear ? up : down}
                     <div className="flex-grow flex flex-col ml-4">
                       <span className="text-xl font-bold">
                         {FormatRupiah(date.year)}
@@ -196,7 +196,7 @@ const StaticCom = () => {
                 <div className="absolute inset-0 h-full w-full rounded-xl bg-white [transform:rotateY(180deg)] [backface-visibility:hidden]">
                   <div className="inset-0">
                     <div className="flex items-center p-4 bg-white border border-gray-200 rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700">
-                      {date.year < date.lastYear ? up : down}
+                      {+date.year < +date.lastYear ? up : down}
                       <div className="flex-grow flex flex-col ml-4">
                         <span className="text-xl font-bold">
                           {FormatRupiah(date.lastYear)}

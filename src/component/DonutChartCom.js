@@ -29,7 +29,7 @@ const DonutChartCom = ({ items }) => {
               total: {
                 show: true,
                 showAlways: true,
-                fontSize: "24",
+                fontSize: "18",
                 color: "#2787AB",
               },
             },

@@ -171,9 +171,13 @@ const AddressCom = ({ stringURL, fetchDataAddress, action = true }) => {
                   htmlFor="Address"
                   className="block font-medium text-gray-900 dark:text-white"
                 >
-                  <strong className="text-2xl">{item.sebagai}</strong>
+                  <strong className="md:text-2xl text-base">
+                    {item.sebagai}
+                  </strong>
                 </Label>
-                <span className="mr-auto text-sm">{item.alamat_lengkap}</span>
+                <span className="mr-auto md:text-sm text-xs">
+                  {item.alamat_lengkap}
+                </span>
               </div>
               {action && (
                 <div className="flex flex-wrap items-center justify-center">
