@@ -29,9 +29,7 @@ const Register = () => {
 
   const register = async (e) => {
     e.preventDefault();
-
     const formData = new FormData();
-
     formData.append("name", name);
     formData.append("email", email);
     formData.append("number_phone", hp);
@@ -46,13 +44,11 @@ const Register = () => {
     formData.append("gender", jk);
     formData.append("password", password);
     formData.append("password_confirmation", passwordConfirm);
-
     if (acc) {
       formData.append("accept", "accept");
     } else {
       formData.append("accept", "");
     }
-
     await Axios.post("register", formData)
       .then(() => {
         TimerAlert().Modal.fire({

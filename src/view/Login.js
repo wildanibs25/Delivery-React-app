@@ -15,31 +15,28 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [sat, setSat] = useState(false);
-
   const [validation, setValidation] = useState([]);
   const cookies = new Cookies();
 
   const login = async (e) => {
     e.preventDefault();
-
     const formData = new FormData();
-
     formData.append("email", email);
     formData.append("password", b64EncodeUnicode(password));
-
-    Axios.defaults.headers.common["Authorization"] = `Bearer ${cookies.get(
-      "ACCESS_TOKEN"
-    )}`;
-
     await Axios.post("login", formData)
       .then((response) => {
         TimerAlert().Toast.fire({
           icon: "success",
           title: "Signed in successfully",
         });
+        if (cookies.get("ACCESS_TOKEN")) {
+          cookies.remove("ACCESS_TOKEN");
+        }
         cookies.set("ACCESS_TOKEN", response.data.token, {
           path: "/",
           maxAge: 3600 * 8,
+          secure: true,
+          sameSite: true,
         });
         auth.getMe();
       })
