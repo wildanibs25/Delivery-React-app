@@ -90,7 +90,7 @@ const Admin = () => {
           open
             ? "w-72 bg-gradient-to-r from-cyan-500 to-blue-500"
             : "w-20 bg-gradient-to-r from-blue-500 to-cyan-500"
-        } z-40 h-screen sticky top-0 left-0 p-4 pt-8 duration-100 md:duration-300 border border-gray-200 rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700 justify-between`}
+        } z-40 h-screen sticky top-0 left-0 p-4 pt-8 duration-100 md:duration-300 border border-gray-200 rounded-r-lg shadow-md dark:bg-gray-800 dark:border-gray-700 justify-between`}
       >
         <img
           src={control}

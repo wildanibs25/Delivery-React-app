@@ -217,11 +217,11 @@ const StaticCom = () => {
         </div>
       </div>
       <div className="flex flex-grow">
-        <div className="grid md:grid-cols-2 grid-cols-1 gap-6 w-full max-w-6xl mb-86">
-          <span className="mx-auto">
+        <div className="grid lg:grid-cols-2 md:grid-cols-1 gap-6 w-full max-w-6xl mb-86">
+          <span className="mx-auto flex flex-grow">
             <BarChartCom orders={orders} />
           </span>
-          <span className="mx-auto">
+          <span className="mx-auto flex flex-grow">
             <DonutChartCom items={items} />
           </span>
         </div>

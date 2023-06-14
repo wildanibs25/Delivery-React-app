@@ -130,7 +130,7 @@ const BarChartCom = ({ orders }) => {
     ]);
   }, [orders]);
 
-  return <Chart options={options} series={series} type="bar" width="500" />;
+  return <Chart options={options} series={series} type="bar" width="170%" />;
 };
 
 export default BarChartCom;

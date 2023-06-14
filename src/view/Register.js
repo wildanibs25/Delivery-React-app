@@ -72,7 +72,6 @@ const Register = () => {
       top: 0,
     });
   }, []);
-  // ;
   return (
     <Card>
       <section className="bg-gray-50 dark:bg-gray-900 md:m-0 -m-6">
