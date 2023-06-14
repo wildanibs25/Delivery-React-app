@@ -41,7 +41,7 @@ const DonutChartCom = ({ items }) => {
     setSeries(data);
   }, [items]);
 
-  return <Chart options={options} series={series} type="donut" width="150%" />;
+  return <Chart options={options} series={series} type="donut" width="170%" />;
 };
 
 export default DonutChartCom;
