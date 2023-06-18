@@ -201,7 +201,7 @@ const Checkout = () => {
 
             <div>
               {showForm ? (
-                <div>
+                <div className="md:mx-0 -mx-5">
                   <AddressCom fetchDataAddress={fetchDataAddress} />
                 </div>
               ) : (

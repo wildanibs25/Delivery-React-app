@@ -35,7 +35,6 @@ const Login = () => {
         cookies.set("ACCESS_TOKEN", response.data.token, {
           path: "/",
           maxAge: 3600 * 8,
-          secure: true,
           sameSite: true,
         });
         auth.getMe();

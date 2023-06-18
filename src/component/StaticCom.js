@@ -4,7 +4,7 @@ import Cookies from "universal-cookie";
 import Axios from "../service/axios";
 import { BarChartCom, DonutChartCom, FormatRupiah } from ".";
 
-const StaticCom = () => {
+const StaticCom = ({ orderUpdate, setOrderUpdate }) => {
   const [items, setItems] = useState([]);
   const [orders, setOrders] = useState([]);
 
@@ -77,12 +77,10 @@ const StaticCom = () => {
     )}`;
 
     Axios.get("item-admin").then((response) => {
-      // console.log(response.data.data);
       setItems(response.data.data);
     });
 
     Axios.get("pesanan-admin").then((response) => {
-      // console.log(response.data.static);
       setDate((date) => ({
         ...date,
         today: response.data.static.today,
@@ -97,8 +95,12 @@ const StaticCom = () => {
   };
 
   useEffect(() => {
+    if (orderUpdate) {
+      fetchData();
+      setOrderUpdate(!orderUpdate);
+    }
     fetchData();
-  }, []);
+  }, [orderUpdate]);
 
   return (
     <Fragment>
