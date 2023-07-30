@@ -22,7 +22,7 @@ const Login = () => {
     e.preventDefault();
     const formData = new FormData();
     formData.append("email", email);
-    formData.append("password", b64EncodeUnicode(password));
+    formData.append("password", password);
     await Axios.post("login", formData)
       .then((response) => {
         TimerAlert().Toast.fire({
@@ -54,10 +54,6 @@ const Login = () => {
           setValidation(error.response.data.error);
         }
       });
-  };
-
-  const b64EncodeUnicode = (str) => {
-    return btoa(encodeURIComponent(str));
   };
 
   useEffect(() => {

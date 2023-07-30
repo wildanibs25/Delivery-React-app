@@ -8,6 +8,7 @@ import {
   Admin,
   Checkout,
   Dashboard,
+  GenerateCodeVerification,
   History,
   Home,
   Information,
@@ -19,6 +20,7 @@ import {
   Register,
   SettingAccount,
   User,
+  Verification,
 } from "./view";
 import { About, Team, Contact, Terms } from "./view/informationPage";
 
@@ -84,6 +86,8 @@ function App() {
           <Route path="terms" element={<Terms />} />
         </Route>
 
+        <Route path="/reverification" element={<GenerateCodeVerification />} />
+        <Route path="/verified/:code/:token" element={<Verification />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </AuthProvider>

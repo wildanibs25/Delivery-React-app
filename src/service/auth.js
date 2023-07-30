@@ -14,13 +14,15 @@ const AuthProvider = ({ children }) => {
 
   const navigate = useNavigate();
 
-
   const getMe = async () => {
     const token = cookies.get("ACCESS_TOKEN");
     if (token) {
       Axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
       await Axios.get("detail-user")
         .then((response) => {
+          if (response.data.user.email_verified_at === null)
+            navigate("/reverification");
+
           response.data.user.is_admin = +response.data.user.is_admin;
           setUser(response.data.user);
         })

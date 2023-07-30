@@ -1,7 +1,7 @@
 import Axios from "../service/axios";
 import { Button, Card, Label, Radio, TextInput } from "flowbite-react";
 import React, { useEffect, useState } from "react";
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import logoAyam from "../storage/logoAyam.png";
 import Nama from "../storage/nama";
 import {
@@ -10,8 +10,11 @@ import {
   FormPasswordCom,
   FormDateCom,
 } from "../component";
+import { useAuth } from "../service/auth";
+import Cookies from "universal-cookie";
 
 const Register = () => {
+  const auth = useAuth();
   const nama = Nama();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -21,11 +24,11 @@ const Register = () => {
   const [password, setPassword] = useState("");
   const [passwordConfirm, setPasswordConfirm] = useState("");
 
+  const cookies = new Cookies();
+
   const [acc, setAcc] = useState(false);
 
   const [validation, setValidation] = useState([]);
-
-  const navigate = useNavigate();
 
   const register = async (e) => {
     e.preventDefault();
@@ -50,13 +53,21 @@ const Register = () => {
       formData.append("accept", "");
     }
     await Axios.post("register", formData)
-      .then(() => {
+      .then((response) => {
         TimerAlert().Modal.fire({
           icon: "success",
           title: "Signed up successfully",
           html: "<br />",
         });
-        navigate("/login");
+         if (cookies.get("ACCESS_TOKEN")) {
+           cookies.remove("ACCESS_TOKEN");
+         }
+         cookies.set("ACCESS_TOKEN", response.data.token, {
+           path: "/",
+           maxAge: 3600 * 8,
+           sameSite: true,
+         });
+         auth.getMe();
       })
       .catch((error) => {
         TimerAlert().Toast.fire({

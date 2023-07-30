@@ -55,7 +55,7 @@ const Home = () => {
 
   const selectItem = async (menu) => {
     setCountItem(countItem + 1);
-    setCountPrice(countPrice + (+menu.harga_menu));
+    setCountPrice(countPrice + +menu.harga_menu);
     const formData = new FormData();
     formData.append("id_menu_item", menu.id_menu);
     Axios.defaults.headers.common["Authorization"] = `Bearer ${cookies.get(
@@ -74,12 +74,12 @@ const Home = () => {
       )}`;
       await Axios.get("item").then((response) => {
         const totalQty = response.data.data.reduce(
-          (sebelum, sekarang) => (+sebelum) + (+sekarang.qty),
+          (sebelum, sekarang) => +sebelum + +sekarang.qty,
           0
         );
         const totalPrice = response.data.data.reduce(
           (sebelum, sekarang) =>
-            (+sebelum) + (+sekarang.menu.harga_menu) * (+sekarang.qty),
+            +sebelum + +sekarang.menu.harga_menu * +sekarang.qty,
           0
         );
         setCountItem(totalQty);

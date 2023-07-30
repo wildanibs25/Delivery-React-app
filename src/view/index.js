@@ -13,6 +13,8 @@ import Order from "./Order";
 import Accounts from "./Accounts";
 import Information from "./Information";
 import History from "./History";
+import Verification from "./Verification";
+import GenerateCodeVerification from "./GenerateCodeVerification";
 
 export {
   Home,
@@ -29,5 +31,7 @@ export {
   Order,
   Accounts,
   Information,
-  History
+  History,
+  GenerateCodeVerification,
+  Verification,
 };
