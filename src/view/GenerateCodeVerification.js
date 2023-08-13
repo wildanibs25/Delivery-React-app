@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useAuth } from "../service/auth";
 import Cookies from "universal-cookie";
 import Axios from "../service/axios";
-import { NavLink, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { Card } from "flowbite-react";
 import logoAyam from "../storage/logoAyam.png";
 import Nama from "../storage/nama";
@@ -49,13 +49,10 @@ const GenerateCodeVerification = () => {
   return (
     <div className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden py-6 sm:py-12 bg-white">
       <Card>
-        <NavLink
-          to="/"
-          className="flex-col items-center justify-center mb-6 text-2xl font-semibold text-gray-900 dark:text-white mx-auto"
-        >
-          <img className="w-20 h-20 mx-auto" src={logoAyam} alt={"Flowbite"} />
+        <div className="flex-col items-center justify-center mb-6 text-2xl font-semibold text-gray-900 dark:text-white mx-auto">
+          <img className="w-20 h-20 mx-auto" src={logoAyam} alt={logoAyam} />
           {nama}
-        </NavLink>
+        </div>
         <div className="max-w-xl px-5 text-center">
           <h2 className="mb-2 text-[42px] font-bold text-zinc-800">
             Check your inbox

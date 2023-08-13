@@ -59,15 +59,15 @@ const Register = () => {
           title: "Signed up successfully",
           html: "<br />",
         });
-         if (cookies.get("ACCESS_TOKEN")) {
-           cookies.remove("ACCESS_TOKEN");
-         }
-         cookies.set("ACCESS_TOKEN", response.data.token, {
-           path: "/",
-           maxAge: 3600 * 8,
-           sameSite: true,
-         });
-         auth.getMe();
+        if (cookies.get("ACCESS_TOKEN")) {
+          cookies.remove("ACCESS_TOKEN");
+        }
+        cookies.set("ACCESS_TOKEN", response.data.token, {
+          path: "/",
+          maxAge: 3600 * 8,
+          sameSite: true,
+        });
+        auth.getMe();
       })
       .catch((error) => {
         TimerAlert().Toast.fire({
